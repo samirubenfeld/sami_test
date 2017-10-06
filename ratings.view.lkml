@@ -22,6 +22,26 @@ view: ratings {
     sql: ${TABLE}.userId ;;
   }
 
+  measure: rating_total {
+    type: sum
+    sql: ${TABLE}.rating ;;
+  }
+
+  measure: rating_average {
+    type: average
+    sql: ${TABLE}.rating ;;
+  }
+
+  measure: rating_min {
+    type: min
+    sql: ${TABLE}.rating ;;
+  }
+
+  measure: rating_max {
+    type: max
+    sql: ${TABLE}.rating ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [movies.movie_id]
