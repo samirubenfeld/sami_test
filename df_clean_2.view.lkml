@@ -130,6 +130,15 @@ view: artworks {
     sql: ${TABLE}.Width__cm_ ;;
   }
 
+  dimension: artworks_years_until_acquistion {
+    type: number
+    sql:DATE_DIFF(artworks.DateAcquired,artworks.Date, year)  ;;
+
+  }
+
+
+
+
   measure: count {
     type: count
     drill_fields: [detail*]
@@ -141,15 +150,19 @@ view: artworks {
       title,
       classification,
       department,
+      height__cm,
+      depth__cm,
+      length__cm,
       cataloged,
       date_date,
       date_year,
       date_month,
       date_week,
       date_acquired_date,
+      date_acquired_year,
       date_acquired_month,
       date_acquired_week,
-      date_acquired_year
+
     ]
   }
 }

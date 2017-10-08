@@ -8,6 +8,11 @@ include: "*.dashboard"
 
 
 explore: artworks {
+  join: artists {
+    type: left_outer
+    sql_on: ${artworks.constituent_id_a} = ${artists.constituent_id} ;;
+    relationship:  many_to_one
+  }
 
 }
 
