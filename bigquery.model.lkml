@@ -6,6 +6,11 @@ include: "*.view"
 # include all the dashboards
 include: "*.dashboard"
 
+
+explore: artworks {
+
+}
+
 #
 # explore: movies {
 #   join: ratings {
