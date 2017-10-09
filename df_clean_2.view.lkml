@@ -85,6 +85,11 @@ view: artworks {
     sql: ${TABLE}.Duration__sec__ ;;
   }
 
+  dimension: duration_min {
+    type: number
+    sql: ${duration__sec}/60 ;;
+  }
+
   dimension: height__cm {
     type: number
     sql: ${TABLE}.Height__cm_ ;;
@@ -137,6 +142,8 @@ view: artworks {
   }
 
 
+# MEASURES
+
 
 
   measure: count {
@@ -144,10 +151,26 @@ view: artworks {
     drill_fields: [detail*]
   }
 
+  measure: average_depth {
+    type: average
+    sql: ${depth__cm} ;;
+  }
+
+  measure: average_height {
+    type: average
+    sql: ${height__cm} ;;
+  }
+
+  measure: average_width {
+    type: average
+    sql: ${width__cm} ;;
+  }
+
   set: detail {
     fields: [
       artist,
       title,
+      credit_line,
       classification,
       department,
       height__cm,

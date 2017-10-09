@@ -43,6 +43,6 @@ view: artists {
 
   measure: count {
     type: count
-    drill_fields: [display_name]
+    drill_fields: [gender]
   }
 }
