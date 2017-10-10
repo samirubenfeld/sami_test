@@ -18,6 +18,7 @@ view: tree_census_2015 {
 
   dimension: borocode {
     type: number
+    # map_layer_name: my_boro_layer
     sql: ${TABLE}.borocode ;;
   }
 
@@ -97,6 +98,13 @@ view: tree_census_2015 {
     sql_longitude:${longitude};;
 }
 
+  dimension: rounded_location {
+    type: location
+    sql_latitude: ROUND(${latitude},2);;
+    sql_longitude: ROUND(${longitude},2);;
+  }
+
+
 
   dimension: nta {
     type: string
@@ -140,7 +148,7 @@ view: tree_census_2015 {
 
   dimension: species_latin {
     type: string
-    sql: ${TABLE}.spc_latin ;;
+    sql: UPPER(${TABLE}.spc_latin) ;;
   }
 
   dimension: st_assem {
