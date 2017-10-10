@@ -126,12 +126,12 @@ view: tree_census_2015 {
     sql: ${TABLE}.sidewalk ;;
   }
 
-  dimension: spc_common {
+  dimension: species_common {
     type: string
     sql: ${TABLE}.spc_common ;;
   }
 
-  dimension: spc_latin {
+  dimension: species_latin {
     type: string
     sql: ${TABLE}.spc_latin ;;
   }
