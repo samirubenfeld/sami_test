@@ -28,3 +28,7 @@ explore: tree_census_2005 {
 explore: tree_species {
 
 }
+
+explore: fall_colors {
+
+}
