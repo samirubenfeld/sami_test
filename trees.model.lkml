@@ -19,7 +19,7 @@ include: "*.dashboard.lookml"  # include all dashboards in this project
 # }
 
 map_layer: my_boro_layer {
-  url: "https://www.dropbox.com/s/z9njpdcra3bs4am/nybb.json?dl=0"
+  file: "nybb.json"
    property_key: "BoroCode"
  }
 
