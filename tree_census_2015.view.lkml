@@ -206,10 +206,12 @@ view: tree_census_2015 {
     sql: ${TABLE}.y_sp ;;
   }
 
-  dimension: zip_city {
+  dimension: city {
     type: string
+    map_layer_name: us_states
     sql: ${TABLE}.zip_city ;;
   }
+
 
   dimension: zipcode {
     type: zipcode
