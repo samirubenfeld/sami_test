@@ -18,10 +18,10 @@ include: "*.dashboard.lookml"  # include all dashboards in this project
 #   }
 # }
 
-# map_layer: my_boro_layer {
-#   file: "nybb.topojson"
-#   property_key: "BoroCode"
-# }
+map_layer: my_boro_layer {
+  url: "https://www.dropbox.com/s/z9njpdcra3bs4am/nybb.json?dl=0"
+   property_key: "BoroCode"
+ }
 
 explore: tree_census_2015 {
   join: tree_species {

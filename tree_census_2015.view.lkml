@@ -18,7 +18,7 @@ view: tree_census_2015 {
 
   dimension: borocode {
     type: number
-    # map_layer_name: my_boro_layer
+    map_layer_name: my_boro_layer
     sql: ${TABLE}.borocode ;;
   }
 
