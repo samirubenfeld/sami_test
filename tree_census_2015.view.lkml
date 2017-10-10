@@ -91,6 +91,8 @@ view: tree_census_2015 {
     sql: ${TABLE}.longitude ;;
   }
 
+
+
   dimension: nta {
     type: string
     sql: ${TABLE}.nta ;;
