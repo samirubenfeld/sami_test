@@ -29,6 +29,8 @@ explore: tree_species {
 
 }
 
+explore: fall_color_2005 {}
+
 explore: fall_colors {
 
 }
