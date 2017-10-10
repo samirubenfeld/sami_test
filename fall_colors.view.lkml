@@ -69,6 +69,11 @@ view: fall_colors {
     sql: ${TABLE}.change ;;
   }
 
+  measure: change_count {
+    type: sum
+    sql: ${change} ;;
+  }
+
   set: detail {
     fields: [fall_color, change]
   }

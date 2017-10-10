@@ -72,6 +72,31 @@ view: change_since_1995 {
     sql: ${TABLE}.dead_growth ;;
   }
 
+  measure: total_2015 {
+    type: sum
+    sql: ${count_2015} ;;
+  }
+
+  measure: total_1995 {
+    type: sum
+    sql: ${count_1995} ;;
+  }
+
+  measure: total_growth {
+    type: sum
+    sql: ${count_growth} ;;
+  }
+
+  measure: total_alive_growth {
+    type: sum
+    sql: ${alive_growth} ;;
+  }
+
+  measure: total_dead_growth {
+    type: sum
+    sql: ${dead_growth} ;;
+  }
+
   set: detail {
     fields: [
       upper_latin,
