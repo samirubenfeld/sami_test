@@ -19,10 +19,10 @@ include: "*.dashboard.lookml"  # include all dashboards in this project
 # }
 
 explore: tree_census_2015 {
-  join: tree_census_2005 {
-    relationship: many_to_many
-    sql_on: ${tree_census_2015.species_common} = ${tree_census_2005.species_common} ;;
-  }
+}
+
+explore: tree_census_2005 {
+
 }
 
 explore: tree_species {
