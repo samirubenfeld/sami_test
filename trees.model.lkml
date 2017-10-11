@@ -3,20 +3,7 @@ connection: "google_bigquery_test_db"
 include: "*.view.lkml"         # include all views in this project
 include: "*.dashboard.lookml"  # include all dashboards in this project
 
-# # Select the views that should be a part of this model,
-# # and define the joins that connect them together.
-#
-# explore: order_items {
-#   join: orders {
-#     relationship: many_to_one
-#     sql_on: ${orders.id} = ${order_items.order_id} ;;
-#   }
-#
-#   join: users {
-#     relationship: many_to_one
-#     sql_on: ${users.id} = ${orders.user_id} ;;
-#   }
-# }
+
 
 
 
@@ -65,8 +52,9 @@ explore: health_pct_2015 {
 }
 
 explore: trees_1995_clean {
-  join: trees_2015_clean {
-    relationship: many_to_many
-    sql_on: ${trees_2015_clean.spc_latin} = ${trees_1995_clean.spc_latin} ;;
-  }
+
+}
+
+explore: trees_2015_clean {
+
 }

@@ -16,10 +16,10 @@ view: trees_2015_clean {
     sql: ${TABLE}.date ;;
   }
 
-  dimension: int64_field_0 {
-    type: number
-    sql: ${TABLE}.int64_field_0 ;;
-  }
+#   dimension: int64_field_0 {
+#     type: number
+#     sql: ${TABLE}.int64_field_0 ;;
+#   }
 
   dimension: latitude {
     type: number

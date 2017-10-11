@@ -16,10 +16,10 @@ view: trees_1995_clean {
     sql: ${TABLE}.date ;;
   }
 
-  dimension: int64_field_0 {
-    type: number
-    sql: ${TABLE}.int64_field_0 ;;
-  }
+#   dimension: int64_field_0 {
+#     type: number
+#     sql: ${TABLE}.int64_field_0 ;;
+#   }
 
   dimension: latitude {
     type: number
@@ -39,6 +39,11 @@ view: trees_1995_clean {
   dimension: spc_latin {
     type: string
     sql: ${TABLE}.SPC_LATIN ;;
+  }
+
+  dimension: status {
+    type: string
+    sql: ${TABLE}.STATUS ;;
   }
 
   dimension: zipcode {
