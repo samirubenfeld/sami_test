@@ -7,15 +7,15 @@ include: "*.dashboard.lookml"  # include all dashboards in this project
 
 
 
-# map_layer: my_boro_layer {
-#   file: "nyu_2451_34154.json"
-#   feature_key: "BOROCODE"
-# }
+ map_layer: my_us_layer {
+   file: "10m_topo.json"
 
-explore: test {
-  from: tree_census_2015
-  hidden: yes
-}
+ }
+
+# explore: test {
+#   from: tree_census_2015
+#   hidden: yes
+# }
 
 explore: tree_census_2015 {
   join: tree_species {
@@ -51,10 +51,14 @@ explore: health_pct_2015 {
 
 }
 
-explore: trees_1995_clean {
+explore: merged_1995_2015 {
 
 }
 
-explore: trees_2015_clean {
-
-}
+# explore: trees_1995_clean {
+#
+# }
+#
+# explore: trees_2015_clean {
+#
+# }
