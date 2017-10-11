@@ -144,6 +144,7 @@ view: tree_census_2015 {
   dimension: species_common {
     type: string
     sql: ${TABLE}.spc_common ;;
+    html: {{ value | upcase}} ;;
   }
 
   dimension: species_latin {

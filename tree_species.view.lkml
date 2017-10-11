@@ -110,9 +110,12 @@ view: tree_species {
     sql: ${TABLE}.notes_suggested_cultivars ;;
   }
 
+
+
   dimension: species_common_name {
     type: string
     sql: ${TABLE}.species_common_name ;;
+    html:  {{ value | upcase}} ;;
   }
 
   dimension: species_scientific_name {

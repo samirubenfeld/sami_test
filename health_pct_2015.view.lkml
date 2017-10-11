@@ -1,7 +1,7 @@
 view: health_pct_2015 {
   derived_table: {
     sql: SELECT
-        UPPER(boroname) as boroname
+        UPPER(boroname) as boroname,
         UPPER(spc_latin) as spc_latin,
         UPPER(spc_common) as spc_common,
         COUNT(*) AS count,
@@ -14,7 +14,8 @@ view: health_pct_2015 {
         status="Alive"
       GROUP BY
         spc_latin,
-        spc_common
+        spc_common,
+        boroname
       ORDER BY
         count DESC
        ;;
@@ -55,21 +56,21 @@ view: health_pct_2015 {
     sql: ${TABLE}.poor_pct ;;
   }
 
-  measure: percent_healthy {
+  dimension: percent_healthy {
     type: number
     sql: ${TABLE}.healthy_pct ;;
     value_format: "#.00\%"
   }
 
 
-  measure: percent_fair {
+  dimension: percent_fair {
     type: number
     sql: ${TABLE}.fair_pct ;;
     value_format: "#.00\%"
   }
 
 
-  measure: percent_poor {
+  dimension: percent_poor {
     type: number
     sql: ${TABLE}.poor_pct ;;
     value_format: "#.00\%"
@@ -84,6 +85,6 @@ view: health_pct_2015 {
 
 
   set: detail {
-    fields: [spc_latin, spc_common, count, healthy_pct]
+    fields: [spc_latin, spc_common, count, boroname, healthy_pct]
   }
 }
