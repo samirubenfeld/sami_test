@@ -21,7 +21,7 @@ include: "*.dashboard.lookml"  # include all dashboards in this project
 
 
 map_layer: my_boro_layer {
-  file: "nyu_2451_34154.json"
+  url: "https://storage.googleapis.com/nyc_trees/nybb.json"
   # property_key: "BoroCode"
  }
 
