@@ -1,6 +1,25 @@
 view: trees_2015_clean {
   sql_table_name: nyc_trees.2015_clean ;;
 
+  dimension_group: date {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.date ;;
+  }
+
+  dimension: int64_field_0 {
+    type: number
+    sql: ${TABLE}.int64_field_0 ;;
+  }
 
   dimension: latitude {
     type: number
@@ -12,19 +31,12 @@ view: trees_2015_clean {
     sql: ${TABLE}.LONGITUDE ;;
   }
 
-  dimension: location {
-    type: location
-    sql_latitude:${latitude};;
-    sql_longitude:${longitude};;
-  }
-
   dimension: spc_common {
     type: string
     sql: ${TABLE}.SPC_COMMON ;;
   }
 
   dimension: spc_latin {
-    primary_key: yes
     type: string
     sql: ${TABLE}.SPC_LATIN ;;
   }
@@ -34,18 +46,6 @@ view: trees_2015_clean {
     sql: ${TABLE}.STATUS ;;
   }
 
-
-
-  dimension: year {
-    type: number
-     sql: ${TABLE}.year ;;
-    }
-
-#   dimension: year {
-#     type: date_year
-#     sql: ${TABLE}.year ;;
-#   }
-
   dimension: zipcode {
     type: zipcode
     sql: ${TABLE}.ZIPCODE ;;
@@ -53,6 +53,6 @@ view: trees_2015_clean {
 
   measure: count {
     type: count
-    drill_fields: [spc_latin, spc_common]
+    drill_fields: []
   }
 }
