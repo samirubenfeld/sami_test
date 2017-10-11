@@ -63,3 +63,10 @@ explore: change_since_1995 {
 explore: health_pct_2015 {
 
 }
+
+explore: trees_1995_clean {
+  join: trees_2015_clean {
+    relationship: many_to_many
+    sql_on: ${trees_2015_clean.spc_latin} = ${trees_1995_clean.spc_latin} ;;
+  }
+}
