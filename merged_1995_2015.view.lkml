@@ -13,6 +13,8 @@ view: merged_1995_2015 {
     drill_fields: [detail*]
   }
 
+
+
 #   dimension: int64_field_0 {
 #     type: string
 #     sql: ${TABLE}.int64_field_0 ;;
@@ -48,10 +50,18 @@ view: merged_1995_2015 {
     sql: ${TABLE}.LONGITUDE ;;
   }
 
+
   dimension: date {
     type: date_year
     sql: ${TABLE}.date ;;
   }
+
+  dimension: rounded_location {
+    type: location
+    sql_latitude: ROUND(${latitude},2);;
+    sql_longitude: ROUND(${longitude},2);;
+  }
+
 
   dimension: location {
     type: location

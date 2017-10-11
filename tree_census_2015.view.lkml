@@ -235,6 +235,32 @@ view: tree_census_2015 {
     sql: ${TABLE}.zipcode ;;
   }
 
+  dimension: zipcode_alt {
+    type: number
+    sql: ${TABLE}.zipcode ;;
+    value_format: "0"
+  }
+
+  measure: west_side_count {
+    type: count
+    filters: {
+      field: zipcode_alt
+      value: "10012, 10013, 10014"
+    }
+  }
+
+
+  measure: lower_manhattan_count {
+    type: count
+    filters: {
+      field: zipcode_alt
+      value:  "10004, 10005, 10006, 10007, 10038, 10280"
+    }
+  }
+
+
+
+
   measure: count {
     type: count
     drill_fields: [boroname, health, nta_name]

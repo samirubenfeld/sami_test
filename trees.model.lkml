@@ -8,7 +8,7 @@ include: "*.dashboard.lookml"  # include all dashboards in this project
 
 
  map_layer: my_us_layer {
-   file: "10m_topo.json"
+   file: "states.json"
 
  }
 
