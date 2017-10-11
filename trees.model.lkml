@@ -18,13 +18,11 @@ include: "*.dashboard.lookml"  # include all dashboards in this project
 #   }
 # }
 
-map_layer: my_district_layer {
-  file: "gz_2010_us_050_00_500k.json"
-}
+
 
 map_layer: my_boro_layer {
-  file: "nyboro.json"
-   property_key: "BoroCode"
+  file: "nyu_2451_34154.json"
+  # property_key: "BoroCode"
  }
 
 explore: test {

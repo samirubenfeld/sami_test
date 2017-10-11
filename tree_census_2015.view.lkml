@@ -162,7 +162,6 @@ view: tree_census_2015 {
   }
 
   dimension: state {
-    map_layer_name: my_district_layer
     type: string
     sql: ${TABLE}.state ;;
   }
