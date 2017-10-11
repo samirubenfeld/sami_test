@@ -240,8 +240,7 @@ view: tree_census_2015 {
   }
 
   measure: poor_count {
-    type: count_distinct
-    sql:  ${TABLE}.health ;;
+    type: count
     filters: {
       field: health
       value: "Poor"
@@ -249,8 +248,7 @@ view: tree_census_2015 {
   }
 
   measure: good_count {
-    type: count_distinct
-    sql:  ${TABLE}.health ;;
+    type: count
     filters: {
       field: health
       value: "Good"
@@ -258,8 +256,7 @@ view: tree_census_2015 {
   }
 
   measure: fair_count {
-    type: count_distinct
-    sql:  ${TABLE}.health ;;
+    type: count
     filters: {
       field: health
       value: "Fair"
@@ -269,6 +266,18 @@ view: tree_census_2015 {
   measure: percent_poor {
     type: number
     sql: 100.0 * ${poor_count} / NULLIF(${count}, 0) ;;
+    value_format: "#.00\%"
+  }
+
+  measure: percent_fair {
+    type: number
+    sql: 100.0 * ${fair_count} / NULLIF(${count}, 0) ;;
+    value_format: "#.00\%"
+  }
+
+  measure: percent_good {
+    type: number
+    sql: 100.0 * ${good_count} / NULLIF(${count}, 0) ;;
     value_format: "#.00\%"
   }
 }
