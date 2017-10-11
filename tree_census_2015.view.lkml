@@ -147,6 +147,7 @@ view: tree_census_2015 {
   }
 
   dimension: species_latin {
+    primary_key:  yes
     type: string
     sql: UPPER(${TABLE}.spc_latin) ;;
   }
@@ -235,6 +236,39 @@ view: tree_census_2015 {
 
   measure: count {
     type: count
-    drill_fields: [boroname, nta_name]
+    drill_fields: [boroname, health, nta_name]
+  }
+
+  measure: poor_count {
+    type: count_distinct
+    sql:  ${TABLE}.health ;;
+    filters: {
+      field: health
+      value: "Poor"
+    }
+  }
+
+  measure: good_count {
+    type: count_distinct
+    sql:  ${TABLE}.health ;;
+    filters: {
+      field: health
+      value: "Good"
+    }
+  }
+
+  measure: fair_count {
+    type: count_distinct
+    sql:  ${TABLE}.health ;;
+    filters: {
+      field: health
+      value: "Fair"
+    }
+  }
+
+  measure: percent_poor {
+    type: number
+    sql: 100.0 * ${poor_count} / NULLIF(${count}, 0) ;;
+    value_format: "#.00\%"
   }
 }
