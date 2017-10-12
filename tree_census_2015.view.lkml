@@ -18,6 +18,7 @@ view: tree_census_2015 {
 
   dimension: borocode {
     type: number
+    map_layer_name: custom_borough_map
     sql: ${TABLE}.borocode ;;
   }
 
@@ -48,6 +49,7 @@ view: tree_census_2015 {
 
   dimension: cncldist {
     type: number
+    map_layer_name: custom_map
     sql: ${TABLE}.cncldist ;;
   }
 
@@ -163,7 +165,6 @@ view: tree_census_2015 {
   }
 
   dimension: state {
-    map_layer_name: my_us_layer
     type: string
     sql: ${TABLE}.state ;;
   }
