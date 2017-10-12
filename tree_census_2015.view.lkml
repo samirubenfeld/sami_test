@@ -291,6 +291,84 @@ view: tree_census_2015 {
     }
   }
 
+
+  measure: manhattan_count {
+    type: count
+    filters: {
+      field: borocode
+      value: "1"
+    }
+  }
+
+  measure: bronx_count {
+    type: count
+    filters: {
+      field: borocode
+      value: "2"
+    }
+  }
+
+
+  measure: brooklyn_count {
+    type: count
+    filters: {
+      field: borocode
+      value: "3"
+    }
+  }
+
+  measure: queens_count {
+    type: count
+    filters: {
+      field: borocode
+      value: "4"
+    }
+  }
+
+  measure: staten_island_count {
+    type: count
+    filters: {
+      field: borocode
+      value: "5"
+    }
+  }
+
+
+  measure: percent_manhattan {
+    type: number
+    sql: 100.0 * ${manhattan_count} / NULLIF(${count}, 0) ;;
+    value_format: "#.00\%"
+
+  }
+
+  measure: percent_bronx {
+    type: number
+    sql: 100.0 * ${bronx_count} / NULLIF(${count}, 0) ;;
+    value_format: "#.00\%"
+
+  }
+
+  measure: percent_brooklyn {
+    type: number
+    sql: 100.0 * ${brooklyn_count} / NULLIF(${count}, 0) ;;
+    value_format: "#.00\%"
+
+  }
+
+  measure: percent_queens {
+    type: number
+    sql: 100.0 * ${queens_count} / NULLIF(${count}, 0) ;;
+    value_format: "#.00\%"
+
+  }
+
+  measure: percent_staten_island {
+    type: number
+    sql: 100.0 * ${staten_island_count} / NULLIF(${count}, 0) ;;
+    value_format: "#.00\%"
+
+  }
+
   measure: percent_poor {
     type: number
     sql: 100.0 * ${poor_count} / NULLIF(${count}, 0) ;;

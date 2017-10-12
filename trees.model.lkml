@@ -31,6 +31,15 @@ explore: tree_census_2015 {
   }
 }
 
+
+explore: tree_census_1995 {
+  join: tree_species {
+    relationship: many_to_one
+    sql_on:  ${tree_species.species_scientific_name} = ${tree_census_1995.spc_latin} ;;
+  }
+}
+
+
 explore: tree_census_2005 {
 
 }
