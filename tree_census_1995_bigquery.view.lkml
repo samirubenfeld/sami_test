@@ -1,5 +1,5 @@
-view: tree_census_1995 {
-  sql_table_name: nyc_trees.tree_census_1995 ;;
+view: tree_census_1995_bigquery {
+  sql_table_name: nyc_trees.tree_census_1995_bigquery ;;
 
   dimension: address {
     type: string

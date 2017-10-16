@@ -5,6 +5,11 @@ include: "*.dashboard.lookml"  # include all dashboards in this project
 
 
 
+map_layer: custom_census {
+  url: "https://gist.githubusercontent.com/samirubenfeld/b6e0cc4feb256cac17b7de5d8d9ba0ce/raw/5bf4a50353882bece32260e7ab67f0b2d2e68e1f/2010CensusTracts.json"
+  property_key: "ntacode"
+}
+
 
 
  map_layer: custom_map {
