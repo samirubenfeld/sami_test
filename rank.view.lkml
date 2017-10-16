@@ -27,7 +27,7 @@ view: rank {
     sql: ${TABLE}.spc_common ;;
   }
 
-  dimension: count {
+  dimension: rank_count {
     type: string
     sql: ${TABLE}.count ;;
   }
@@ -37,7 +37,12 @@ view: rank {
     sql: ${TABLE}.quartile ;;
   }
 
+  measure: count {
+    type: count
+    drill_fields: [detail*]
+  }
+
   set: detail {
-    fields: [spc_latin, spc_common, count, quartile]
+    fields: [spc_latin, spc_common, rank_count, quartile]
   }
 }
