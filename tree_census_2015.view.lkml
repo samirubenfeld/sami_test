@@ -44,6 +44,7 @@ view: tree_census_2015 {
 
   dimension: cb_num {
     type: number
+    map_layer_name: custom_cbnum_map
     sql: ${TABLE}.cb_num ;;
   }
 

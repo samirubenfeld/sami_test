@@ -22,7 +22,14 @@ map_layer: custom_cbnum_map {
   property_key: "FID"
 }
 
-explore: rank_2 {}
+explore: rank_manhattan {
+
+}
+
+explore: rank_brooklyn {
+
+
+}
 
 
 explore: rank {}
