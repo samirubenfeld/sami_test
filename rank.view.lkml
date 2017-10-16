@@ -37,6 +37,11 @@ view: rank {
     sql: ${TABLE}.quartile ;;
   }
 
+  measure: total {
+    type: sum
+    sql: ${TABLE}.count ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [detail*]
