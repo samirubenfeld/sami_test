@@ -32,6 +32,11 @@ explore: rank_brooklyn {
 }
 
 
+explore: rank_brooklyn_base {
+
+
+}
+
 explore: rank {}
 
 
@@ -67,6 +72,7 @@ explore: tree_species {
 explore: fall_color_2005 {}
 
 explore: fall_colors {
+  extends: [tree_species]
 
 }
 

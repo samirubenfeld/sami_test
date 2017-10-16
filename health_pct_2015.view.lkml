@@ -1,7 +1,6 @@
 view: health_pct_2015 {
   derived_table: {
     sql: SELECT
-        UPPER(boroname) as boroname,
         UPPER(spc_latin) as spc_latin,
         UPPER(spc_common) as spc_common,
         COUNT(*) AS count,
@@ -14,8 +13,7 @@ view: health_pct_2015 {
         status="Alive"
       GROUP BY
         spc_latin,
-        spc_common,
-        boroname
+        spc_common
       ORDER BY
         count DESC
        ;;
@@ -31,10 +29,10 @@ view: health_pct_2015 {
     sql: ${TABLE}.spc_common ;;
   }
 
-  dimension: boroname {
-    type: string
-    sql:  ${TABLE}.boroname ;;
-  }
+#   dimension: boroname {
+#     type: string
+#     sql:  ${TABLE}.boroname ;;
+#   }
 
   dimension: count {
     type: string
@@ -85,6 +83,6 @@ view: health_pct_2015 {
 
 
   set: detail {
-    fields: [spc_latin, spc_common, count, boroname, healthy_pct]
+    fields: [spc_latin, spc_common, count, healthy_pct]
   }
 }
