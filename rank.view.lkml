@@ -3,6 +3,7 @@ view: rank {
     sql: SELECT
         UPPER(spc_latin) as spc_latin,
         UPPER(spc_common) as spc_common,
+        cncldist,
         COUNT(*) AS count,
         NTILE(4) OVER (ORDER BY COUNT(*)) AS quartile
       FROM
@@ -11,10 +12,10 @@ view: rank {
         status="Alive" AND boroname = "Manhattan"
       GROUP BY
         spc_latin,
-        spc_common
+        spc_common,
+        cncldist
       ORDER BY
-        count DESC
-       ;;
+        count DESC;;
   }
 
   dimension: spc_latin {
@@ -25,6 +26,12 @@ view: rank {
   dimension: spc_common {
     type: string
     sql: ${TABLE}.spc_common ;;
+  }
+
+  dimension: cncldist {
+    type: number
+    map_layer_name: custom_map
+    sql: ${TABLE}.cncldist ;;
   }
 
 #   dimension: rank_count {
