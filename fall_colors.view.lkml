@@ -25,7 +25,7 @@ view: fall_colors {
             spc_common,
             COUNT(*) AS count_2015
           FROM
-            `triple-shadow-181317.nyc_trees.tree_census_2015`
+            `triple-shadow-181317.nyc_trees.tree_census_2015_bigquery`
           WHERE
             status="Alive"
           GROUP BY
@@ -36,7 +36,7 @@ view: fall_colors {
             UPPER(spc_latin) AS upper_latin,
             COUNT(*) AS count_1995
           FROM
-            `triple-shadow-181317.nyc_trees.tree_census_1995`
+            `triple-shadow-181317.nyc_trees.tree_census_1995_bigquery`
           WHERE
             status !="Dead"
           GROUP BY
