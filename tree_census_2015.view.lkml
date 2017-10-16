@@ -110,6 +110,7 @@ view: tree_census_2015 {
 
   dimension: nta {
     type: string
+    map_layer_name: custom_census
     sql: ${TABLE}.nta ;;
   }
 

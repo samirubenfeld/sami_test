@@ -93,6 +93,7 @@ view: tree_census_2015_bigquery {
 
   dimension: nta {
     type: string
+    map_layer_name: custom_census
     sql: ${TABLE}.nta ;;
   }
 
