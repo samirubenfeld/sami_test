@@ -1,4 +1,5 @@
 view: rank_2 {
+  label: "Rank Extended"
   derived_table: {
     sql:
     SELECT
