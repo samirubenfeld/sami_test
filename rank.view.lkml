@@ -27,10 +27,10 @@ view: rank {
     sql: ${TABLE}.spc_common ;;
   }
 
-  dimension: rank_count {
-    type: string
-    sql: ${TABLE}.count ;;
-  }
+#   dimension: rank_count {
+#     type: string
+#     sql: ${TABLE}.count ;;
+#   }
 
   dimension: quartile {
     type: string
@@ -48,6 +48,6 @@ view: rank {
   }
 
   set: detail {
-    fields: [spc_latin, spc_common, rank_count, quartile]
+    fields: [spc_latin, spc_common, quartile]
   }
 }
