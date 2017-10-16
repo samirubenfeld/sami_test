@@ -18,6 +18,8 @@ property_key: "BoroCode"
 }
 
 
+explore: rank {}
+
 
 # explore: test {
 #   from: tree_census_2015
