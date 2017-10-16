@@ -33,7 +33,7 @@ view: rank {
 #   }
 
   dimension: quartile {
-    type: string
+    type: number
     sql: ${TABLE}.quartile ;;
   }
 
@@ -41,6 +41,13 @@ view: rank {
     type: sum
     sql: ${TABLE}.count ;;
   }
+
+  measure: percent_of_total {
+    type: percent_of_total
+    sql: ${total};;
+  }
+
+
 
   measure: count {
     type: count
