@@ -1,8 +1,11 @@
-view: rank {
+view: rank_2 {
   derived_table: {
-    sql:    SELECT
+    sql:
+    SELECT
         UPPER(spc_latin) as spc_latin,
         UPPER(spc_common) as spc_common,
+        cb_num,
+        health,
         COUNT(*) AS count,
         NTILE(4) OVER (ORDER BY COUNT(*)) AS quartile
       FROM
@@ -11,7 +14,9 @@ view: rank {
         status="Alive" AND boroname = "Manhattan"
       GROUP BY
         spc_latin,
-        spc_common
+        spc_common,
+        cb_num,
+        health
       ORDER BY
         count DESC;;
   }
@@ -26,17 +31,17 @@ view: rank {
     sql: ${TABLE}.spc_common ;;
   }
 
-#   dimension: health {
-#     type: string
-#     sql: ${TABLE}.health ;;
-#   }
+  dimension: health {
+    type: string
+    sql: ${TABLE}.health ;;
+  }
 
-#   dimension: cb_num {
-#     description: "Community board in which tree point is located"
-#     type: number
-#     map_layer_name: custom_cbnum_map
-#     sql: ${TABLE}.cb_num ;;
-#   }
+  dimension: cb_num {
+    description: "Community board in which tree point is located"
+    type: number
+    map_layer_name: custom_cbnum_map
+    sql: ${TABLE}.cb_num ;;
+  }
 
 #   dimension: rank_count {
 #     type: string

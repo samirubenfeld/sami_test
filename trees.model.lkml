@@ -17,6 +17,13 @@ url: "https://gist.githubusercontent.com/samirubenfeld/a8714a26c8574c01b92d9ff52
 property_key: "BoroCode"
 }
 
+map_layer: custom_cbnum_map {
+  url: "https://gist.githubusercontent.com/samirubenfeld/c2e16e3948950860244d7c5778e471d9/raw/c7e4bd9458557303dd554f83a1d29e2c633cfb44/districts.json"
+  property_key: "FID"
+}
+
+explore: rank_2 {}
+
 
 explore: rank {}
 
