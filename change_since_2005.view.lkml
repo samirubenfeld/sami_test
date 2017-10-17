@@ -97,6 +97,7 @@ view: change_since_2005 {
     sql: ${dead_growth} ;;
   }
 
+
   set: detail {
     fields: [
       upper_latin,

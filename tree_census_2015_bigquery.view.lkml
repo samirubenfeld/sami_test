@@ -133,15 +133,46 @@ view: tree_census_2015_bigquery {
     sql: ${TABLE}.sidewalk ;;
   }
 
+
   dimension: spc_common {
     type: string
-    sql: ${TABLE}.spc_common ;;
+    sql: UPPER(${TABLE}.spc_common) ;;
+    html: {{ value | upcase}} ;;
   }
 
   dimension: spc_latin {
+    primary_key:  yes
     type: string
-    sql: ${TABLE}.spc_latin ;;
+    sql: UPPER(${TABLE}.spc_latin) ;;
   }
+
+
+
+
+  filter: species_select_latin {
+    suggest_dimension: spc_latin
+  }
+
+  dimension: species_comparitor_latin {
+    sql:
+      CASE WHEN {% condition species_select_latin %} ${spc_latin} {% endcondition %}
+      THEN ${spc_latin}
+      ELSE 'Rest Of Population'
+      END;;
+  }
+
+  filter: species_select_common {
+    suggest_dimension: spc_common
+  }
+
+  dimension: species_comparitor_common {
+    sql:
+      CASE WHEN {% condition species_select_common %} ${spc_common} {% endcondition %}
+      THEN ${spc_common}
+      ELSE 'Rest Of Population'
+      END;;
+  }
+
 
   dimension: st_assem {
     type: number

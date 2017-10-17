@@ -158,6 +158,30 @@ view: tree_census_2015 {
     sql: UPPER(${TABLE}.spc_latin) ;;
   }
 
+  filter: species_select_latin {
+    suggest_dimension: species_latin
+  }
+
+  dimension: species_comparitor_latin {
+    sql:
+      CASE WHEN {% condition species_select_latin %} ${species_latin} {% endcondition %}
+      THEN ${species_latin}
+      ELSE 'Rest Of Population'
+      END;;
+  }
+
+  filter: species_select_common {
+    suggest_dimension: species_common
+  }
+
+  dimension: species_comparitor_common {
+    sql:
+      CASE WHEN {% condition species_select_common %} ${species_common} {% endcondition %}
+      THEN ${species_common}
+      ELSE 'Rest Of Population'
+      END;;
+  }
+
   dimension: st_assem {
     type: number
     sql: ${TABLE}.st_assem ;;
