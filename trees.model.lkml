@@ -58,6 +58,8 @@ explore: rank {
 #   hidden: yes
 # }
 
+explore: health_1995 {}
+
 explore: tree_census_2015 {
   join: tree_species {
     relationship: many_to_one
