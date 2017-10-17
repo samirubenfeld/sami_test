@@ -8,7 +8,7 @@ view: health_1995 {
         ROUND(COUNTIF(status="Excellent")/COUNT(*)*100) AS excellent_pct,
         ROUND(COUNTIF(status="Poor")/COUNT(*)*100) AS poor_pct
       FROM
-        `triple-shadow-181317.nyc_trees.tree_census_1995`
+        `triple-shadow-181317.nyc_trees.tree_census_1995_bigquery`
       WHERE
         status != "Dead"
       GROUP BY
