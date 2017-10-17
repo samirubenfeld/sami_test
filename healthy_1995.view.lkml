@@ -1,4 +1,4 @@
-view: health_1995 {
+view: healthy_1995 {
   derived_table: {
     sql: WITH status_pct_1995 AS (SELECT
         UPPER(spc_latin) as spc_latin,
@@ -8,7 +8,7 @@ view: health_1995 {
         ROUND(COUNTIF(status="Excellent")/COUNT(*)*100) AS excellent_pct,
         ROUND(COUNTIF(status="Poor")/COUNT(*)*100) AS poor_pct
       FROM
-        `triple-shadow-181317.nyc_trees.tree_census_1995_bigquery`
+        `triple-shadow-181317.nyc_trees.tree_census_1995`
       WHERE
         status != "Dead"
       GROUP BY
@@ -21,7 +21,7 @@ SELECT
   status_pct_1995.spc_common  AS status_pct_1995_spc_common,
   status_pct_1995.spc_latin  AS status_pct_1995_spc_latin,
   status_pct_1995.good_pct  AS status_pct_1995_good_pct,
-  status_pct_1995.excellent_pct  AS status_pct_1995_excellent_pct,
+  status_pct_1995.excellent_pct AS status_pct_1995_excellent_pct,
   COALESCE(SUM(status_pct_1995.count ), 0) AS status_pct_1995_total
 FROM status_pct_1995
 
@@ -46,12 +46,12 @@ LIMIT 10
     sql: ${TABLE}.status_pct_1995_spc_latin ;;
   }
 
-  dimension: status_pct_1995_good_pct {
+  dimension: good_pct {
     type: string
     sql: ${TABLE}.status_pct_1995_good_pct ;;
   }
 
-  dimension: status_pct_1995_excellent_pct {
+  dimension: excellent_pct {
     type: string
     sql: ${TABLE}.status_pct_1995_excellent_pct ;;
   }
@@ -61,7 +61,29 @@ LIMIT 10
     sql: ${TABLE}.status_pct_1995_total ;;
   }
 
+  dimension: percent_good {
+    type: number
+    sql: ${good_pct} ;;
+    value_format: "#.00\%"
+  }
+
+
+  dimension: percent_excellent {
+    type: number
+    sql: ${excellent_pct} ;;
+    value_format: "#.00\%"
+  }
+
+  measure: total {
+    type: number
+    sql: ${status_pct_1995_total} ;;
+  }
+
+
+
+
+
   set: detail {
-    fields: [status_pct_1995_spc_common, status_pct_1995_spc_latin, status_pct_1995_good_pct, status_pct_1995_excellent_pct, status_pct_1995_total]
+    fields: [status_pct_1995_spc_common, status_pct_1995_spc_latin, good_pct, excellent_pct, status_pct_1995_total]
   }
 }
