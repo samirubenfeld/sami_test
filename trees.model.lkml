@@ -27,6 +27,12 @@ map_layer: custom_cbnum_map {
   property_key: "FID"
 }
 
+
+explore: fall_form {
+
+}
+
+
 explore: rank_manhattan {
 
 }
@@ -42,7 +48,12 @@ explore: rank_brooklyn_base {
 
 }
 
-explore: rank {}
+explore: rank {
+  join: tree_census_2015 {
+    relationship: many_to_one
+    sql_on:  ${rank.spc_latin} = ${tree_census_2015.species_latin} ;;
+  }
+}
 
 
 # explore: test {

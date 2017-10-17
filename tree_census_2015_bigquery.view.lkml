@@ -91,6 +91,12 @@ view: tree_census_2015_bigquery {
     sql: ${TABLE}.longitude ;;
   }
 
+  dimension: location {
+    type: location
+    sql_latitude:${latitude};;
+    sql_longitude:${longitude};;
+  }
+
   dimension: nta {
     type: string
     map_layer_name: custom_census
