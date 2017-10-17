@@ -49,10 +49,7 @@ explore: rank_brooklyn_base {
 }
 
 explore: rank {
-  join: tree_census_2015 {
-    relationship: many_to_one
-    sql_on:  ${rank.spc_latin} = ${tree_census_2015.species_latin} ;;
-  }
+
 }
 
 
@@ -77,15 +74,15 @@ explore: tree_census_1995 {
 }
 
 
-explore: tree_census_2005 {
-
-}
-
+# explore: tree_census_2005 {
+#
+# }
+#
 explore: tree_species {
 
 }
-
-explore: fall_color_2005 {}
+#
+# explore: fall_color_2005 {}
 
 explore: fall_colors {
   extends: [tree_species]

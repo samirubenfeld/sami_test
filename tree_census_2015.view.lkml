@@ -114,6 +114,8 @@ view: tree_census_2015 {
     sql: ${TABLE}.nta ;;
   }
 
+
+
   dimension: nta_name {
     type: string
     sql: ${TABLE}.nta_name ;;
@@ -146,7 +148,7 @@ view: tree_census_2015 {
 
   dimension: species_common {
     type: string
-    sql: ${TABLE}.spc_common ;;
+    sql: UPPER(${TABLE}.spc_common) ;;
     html: {{ value | upcase}} ;;
   }
 

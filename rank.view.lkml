@@ -17,6 +17,7 @@ view: rank {
   }
 
   dimension: spc_latin {
+    primary_key:  yes
     type: string
     sql: ${TABLE}.spc_latin ;;
   }
