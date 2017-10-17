@@ -15,7 +15,7 @@ view: change_since_2005 {
           COUNTIF(status="Alive") AS alive_2015,
           COUNTIF(status="Dead") AS dead_2015
         FROM
-          `triple-shadow-181317.nyc_trees.tree_census_2015`
+          `triple-shadow-181317.nyc_trees.tree_census_2015_bigquery`
         WHERE spc_latin != ""
         GROUP BY
           spc_latin,
@@ -27,7 +27,7 @@ view: change_since_2005 {
           COUNTIF(status!="Dead") AS alive_2005,
           COUNTIF(status="Dead") AS dead_2005
         FROM
-          `triple-shadow-181317.nyc_trees.tree_census_2005`
+          `triple-shadow-181317.nyc_trees.tree_census_2005_bigquery`
         GROUP BY
           spc_latin)b
       ON
