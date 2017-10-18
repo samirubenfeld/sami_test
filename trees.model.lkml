@@ -2,7 +2,30 @@ connection: "google_bigquery_test_db"
 
 include: "*.view.lkml"         # include all views in this project
 include: "*.dashboard.lookml"  # include all dashboards in this project
+include: "bq.*.view.lkml"
+include: "/test_datablocks/bq.explore.lkml"
 
+
+
+map_layer: block_group {
+  format: "vector_tile_region"
+  url: "https://a.tiles.mapbox.com/v4/dwmintz.4mqiv49l/{z}/{x}/{y}.mvt?access_token=pk.eyJ1IjoiZHdtaW50eiIsImEiOiJjajFoemQxejEwMHVtMzJwamw4OXprZWg0In0.qM9sl1WAxbEUMVukVGMazQ"
+  feature_key: "us_block_groups_simple-c0qtbp"
+  extents_json_url: "https://cdn.rawgit.com/dwmintz/census_extents2/59fa2cd8/bg_extents.json"
+#   min_zoom_level: 9
+  max_zoom_level: 12
+  property_key: "GEOID"
+}
+
+map_layer: tract {
+  format: "vector_tile_region"
+  url: "https://a.tiles.mapbox.com/v4/dwmintz.3zfb3asw/{z}/{x}/{y}.mvt?access_token=pk.eyJ1IjoiZHdtaW50eiIsImEiOiJjajFoemQxejEwMHVtMzJwamw4OXprZWg0In0.qM9sl1WAxbEUMVukVGMazQ"
+  feature_key: "us_tracts-6w08eq"
+  extents_json_url: "https://cdn.rawgit.com/dwmintz/census_extents2/396e32db/tract_extents.json"
+  min_zoom_level: 6
+  max_zoom_level: 12
+  property_key: "GEOID"
+}
 
 
 map_layer: custom_census {
@@ -26,6 +49,7 @@ map_layer: custom_cbnum_map {
   url: "https://gist.githubusercontent.com/samirubenfeld/c2e16e3948950860244d7c5778e471d9/raw/c7e4bd9458557303dd554f83a1d29e2c633cfb44/districts.json"
   property_key: "FID"
 }
+
 
 
 explore: fall_form {
@@ -65,8 +89,12 @@ explore: tree_census_2015 {
     relationship: many_to_one
     sql_on:  ${tree_species.species_scientific_name} = ${tree_census_2015.species_latin} ;;
   }
-}
-
+  join: bq_zipcode_income_facts {
+    sql_on: ${tree_census_2015.zipcode_cast} = ${bq_zipcode_income_facts.ZCTA5} ;;
+    type: left_outer
+    relationship: many_to_one
+    }
+  }
 
 explore: tree_census_1995 {
   join: tree_species {

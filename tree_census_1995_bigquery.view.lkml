@@ -23,11 +23,13 @@ view: tree_census_1995_bigquery {
 
   dimension: censusblock_2010 {
     type: string
+    map_layer_name: block_group_alt
     sql: ${TABLE}.censusblock_2010 ;;
   }
 
   dimension: censustract_2010 {
     type: string
+#     map_layer_name: tract
     sql: ${TABLE}.censustract_2010 ;;
   }
 

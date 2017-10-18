@@ -264,6 +264,12 @@ view: tree_census_2015 {
     sql: ${TABLE}.zipcode ;;
   }
 
+
+  dimension: zipcode_cast {
+    type: zipcode
+    sql: LPAD(CAST(${TABLE}.zipcode as STRING), 5, '0') ;;
+  }
+
   dimension: zipcode_alt {
     type: number
     sql: ${TABLE}.zipcode ;;
