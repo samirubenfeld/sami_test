@@ -56,6 +56,12 @@ explore: fall_form {
 
 }
 
+explore: rank_queens {
+
+}
+
+
+explore: rank_queens_base {}
 
 explore: rank_manhattan {
 
