@@ -254,6 +254,11 @@ view: tree_census_2015_bigquery {
     sql: ${TABLE}.zipcode ;;
   }
 
+  measure: avg_tree_dbh {
+    type: average
+    sql: ${tree_dbh} ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [boroname, nta_name]

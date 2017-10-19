@@ -83,6 +83,9 @@ explore: rank {
 }
 
 
+explore: top_nyc_locations {}
+
+
 # explore: test {
 #   from: tree_census_2015
 #   hidden: yes
