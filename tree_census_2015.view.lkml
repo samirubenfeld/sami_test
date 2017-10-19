@@ -301,6 +301,13 @@ view: tree_census_2015 {
     drill_fields: [boroname, health, nta_name]
   }
 
+  measure: avg_tree_dbh {
+    type: average
+    sql: ${tree_dbh} ;;
+    value_format: "0.00"
+  }
+
+
   measure: poor_count {
     type: count
     filters: {
