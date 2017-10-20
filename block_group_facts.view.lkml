@@ -44,6 +44,8 @@ view: block_group_facts {
     value_format_name: usd_0
   }
 
+
+
   # Sex Measures
   measure: female_population {
     type: sum
@@ -217,6 +219,10 @@ view: block_group_facts {
     sql: ${sixty_five_and_over}/NULLIF(${total_population}, 0) ;;
     group_label: "Age"
     value_format_name: percent_2
+  }
+
+  measure: count {
+    type: count
   }
 
 
