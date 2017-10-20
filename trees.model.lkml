@@ -56,6 +56,10 @@ explore: fall_form {
 
 }
 
+
+
+explore: bq_block_group_facts  {}
+
 explore: rank_queens {
 
 }
