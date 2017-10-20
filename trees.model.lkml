@@ -2,7 +2,7 @@ connection: "google_bigquery_test_db"
 
 include: "*.view.lkml"         # include all views in this project
 include: "*.dashboard.lookml"  # include all dashboards in this project
-include: "bq.*.view.lkml"
+# include: "bq.*.view.lkml"
 # include: "/test_datablocks/bq.explore.lkml"
 
 
@@ -102,12 +102,8 @@ explore: tree_census_2015 {
     relationship: many_to_one
     sql_on:  ${tree_species.species_scientific_name} = ${tree_census_2015.species_latin} ;;
   }
-#   join: bq_zipcode_income_facts {
-#     sql_on: ${tree_census_2015.zipcode_cast} = ${bq_zipcode_income_facts.ZCTA5} ;;
-#     type: left_outer
-#     relationship: many_to_one
-#     }
   }
+
 
 explore: tree_census_1995 {
   join: tree_species {
@@ -119,7 +115,6 @@ explore: tree_census_1995 {
 
 explore: fast_facts {
   from: bq_logrecno_bg_map
-
   join: block_group_facts {
     from: block_group_facts
     view_label: "Fast Facts"
@@ -139,7 +134,14 @@ explore: fast_facts {
     relationship: one_to_one
     required_joins: [tract_zcta_map]
   }
-}
+
+  join: tree_census_2015 {
+      sql_on: ${tree_census_2015.zipcode_cast} = ${tract_zcta_map.ZCTA5} ;;
+     type: left_outer
+     relationship: many_to_one
+     }
+  }
+
 
 # explore: tree_census_2005 {
 #
@@ -172,11 +174,3 @@ explore: health_pct_2015 {
 explore: merged_1995_2015 {
 
 }
-
-# explore: trees_1995_clean {
-#
-# }
-#
-# explore: trees_2015_clean {
-#
-# }
