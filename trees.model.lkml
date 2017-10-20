@@ -3,7 +3,7 @@ connection: "google_bigquery_test_db"
 include: "*.view.lkml"         # include all views in this project
 include: "*.dashboard.lookml"  # include all dashboards in this project
 include: "bq.*.view.lkml"
-include: "/test_datablocks/bq.explore.lkml"
+# include: "/test_datablocks/bq.explore.lkml"
 
 
 
@@ -58,7 +58,7 @@ explore: fall_form {
 
 
 
-explore: bq_block_group_facts  {}
+
 
 explore: rank_queens {
 
@@ -102,11 +102,11 @@ explore: tree_census_2015 {
     relationship: many_to_one
     sql_on:  ${tree_species.species_scientific_name} = ${tree_census_2015.species_latin} ;;
   }
-  join: bq_zipcode_income_facts {
-    sql_on: ${tree_census_2015.zipcode_cast} = ${bq_zipcode_income_facts.ZCTA5} ;;
-    type: left_outer
-    relationship: many_to_one
-    }
+#   join: bq_zipcode_income_facts {
+#     sql_on: ${tree_census_2015.zipcode_cast} = ${bq_zipcode_income_facts.ZCTA5} ;;
+#     type: left_outer
+#     relationship: many_to_one
+#     }
   }
 
 explore: tree_census_1995 {
@@ -116,6 +116,30 @@ explore: tree_census_1995 {
   }
 }
 
+
+explore: fast_facts {
+  from: bq_logrecno_bg_map
+
+  join: block_group_facts {
+    from: block_group_facts
+    view_label: "Fast Facts"
+    sql_on: ${fast_facts.block_group} = ${block_group_facts.logrecno_bg_map_block_group};;
+    relationship: one_to_one
+  }
+
+  join: tract_zcta_map {
+    from: tract_zcta_map
+    sql_on: ${fast_facts.geoid11} = ${tract_zcta_map.geoid11};;
+    relationship: many_to_one
+  }
+
+  join: zcta_distances {
+    from: zcta_distances
+    sql_on: ${tract_zcta_map.ZCTA5} = ${zcta_distances.zip2} ;;
+    relationship: one_to_one
+    required_joins: [tract_zcta_map]
+  }
+}
 
 # explore: tree_census_2005 {
 #
