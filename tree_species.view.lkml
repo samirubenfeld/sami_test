@@ -89,6 +89,21 @@ view: tree_species {
   }
 
 
+#   measure: pct_yellow {
+#     label: "Yellow % of Tree Colors"
+#     group_label: "Colors"
+#     type: number
+#     value_format_name: percent_2
+#     sql: ${sum_yellow}/NULLIF(${count}, 0) ;;
+#     }
+
+#   measure: total_population {
+#     description: "Total Population"
+#     type: sum
+#     sql: ${TABLE}.total ;;
+#   }
+
+
 
   dimension: form {
     type: string
@@ -128,6 +143,8 @@ view: tree_species {
     type: string
     sql: ${TABLE}.tree_size ;;
   }
+
+
 
 
 
