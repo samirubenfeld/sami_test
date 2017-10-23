@@ -298,7 +298,7 @@ view: tree_census_2015 {
 
   measure: count {
     type: count
-    drill_fields: [boroname, health, nta_name]
+    drill_fields: [tree_census_2015.species_common, tree_census_2015.species_latin, tree_census_2015.boroname, tree_census_2015.nta_name]
   }
 
   measure: avg_tree_dbh {
