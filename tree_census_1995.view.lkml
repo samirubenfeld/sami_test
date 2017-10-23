@@ -130,12 +130,12 @@ view: tree_census_1995 {
   }
 
   dimension: zip_new {
-    type: number
+    type: zipcode
     sql: ${TABLE}.zip_new ;;
   }
 
   dimension: zip_original {
-    type: number
+    type: zipcode
     sql: ${TABLE}.zip_original ;;
   }
 

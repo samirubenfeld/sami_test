@@ -53,6 +53,7 @@ map_layer: custom_cbnum_map {
 
 
 explore: fall_form {
+  hidden: yes
 
 }
 
@@ -61,28 +62,35 @@ explore: fall_form {
 
 
 explore: rank_queens {
+  hidden: yes
 
 }
 
 
-explore: rank_queens_base {}
+explore: rank_queens_base {
+  hidden: yes
+}
 
 explore: rank_manhattan {
+  hidden: yes
 
 }
 
 explore: rank_brooklyn {
+  hidden: yes
 
 
 }
 
 
 explore: rank_brooklyn_base {
+  hidden: yes
 
 
 }
 
 explore: rank {
+  hidden:  yes
 
 }
 
@@ -95,7 +103,9 @@ explore: top_nyc_locations {}
 #   hidden: yes
 # }
 
-explore: healthy_1995 {}
+explore: healthy_1995 {
+  hidden: yes
+}
 
 explore: tree_census_2015 {
   join: tree_species {
@@ -156,18 +166,22 @@ explore: fall_colors {
 }
 
 explore: change_since_2005 {
+  hidden: yes
 
 }
 
 
 explore: change_since_1995 {
+  hidden: yes
 
 }
 
 explore: health_pct_2015 {
+  hidden: yes
 
 }
 
 explore: merged_1995_2015 {
+  hidden: yes
 
 }
