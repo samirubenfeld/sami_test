@@ -16,6 +16,58 @@ view: tree_species {
     sql: ${TABLE}.fall_color ;;
   }
 
+
+
+
+  dimension: fall_color_fix {
+    sql: CASE WHEN ${fall_color} = 'Cream' THEN 'Cream'
+              WHEN ${fall_color} = 'Maroon' THEN 'Maroon'
+              WHEN ${fall_color} = 'Orange/Brown' THEN 'Orange/Brown'
+              WHEN ${fall_color} = 'Purple/Maroon' THEN 'Purple/Maroon'
+              WHEN ${fall_color} = 'Red' THEN 'Red'
+              WHEN ${fall_color} = 'Red/Bronze' THEN 'Red/Bronze'
+              WHEN ${fall_color} = 'Yellow' THEN 'Yellow'
+              WHEN ${fall_color} = 'Yellow/Orange' THEN 'Yellow/Orange'
+              WHEN ${fall_color} = 'Red/ Yellow' OR ${fall_color} = 'Red/ yellow' THEN 'Red/Yellow'
+              WHEN ${fall_color} = 'Yellow/Bronze' OR ${fall_color} = 'Yellow/ Bronze' THEN 'Yellow/Bronze'
+              WHEN ${fall_color} = 'Red/Orange' THEN 'Red/Orange'
+              ELSE NULL
+         END ;;
+  }
+
+  dimension: fall_color_alt {
+    type: string
+    sql: ${fall_color_fix};;
+    html:
+      {% if value == 'Cream' %}
+        <div style="color: black; background-color:#DEC6AC; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
+      {% elsif value == 'Maroon' %}
+        <div style="color: white; background-color:#800000; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
+      {% elsif value == 'Orange/Brown' %}
+        <div style="color: black; background-color:#ee7600; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
+      {% elsif value == 'Purple/Maroon' %}
+        <div style="color: white; background-color:#800020; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
+      {% elsif value == 'Red' %}
+        <div style="color: black; background-color:#fa0000; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
+      {% elsif value == 'Red/Bronze' %}
+        <div style="color: black; background-color:#cd5832; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
+      {% elsif value == 'Yellow' %}
+        <div style="color: black; background-color:#FFC300; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
+      {% elsif value == 'Yellow/Orange' %}
+        <div style="color: black; background-color:#ffae42; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
+      {% elsif value == 'Red/Yellow' %}
+        <div style="color: black; background-color:#F9A825; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
+      {% elsif value == 'Yellow/Bronze' %}
+        <div style="color: black; background-color:#d99058; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
+      {% elsif value == 'Red/Orange' %}
+        <div style="color: black; background-color:#FF4500; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
+      {% endif %}
+    ;;
+  }
+
+
+
+
   measure: cream_count {
     type: count
     drill_fields: [detail*]
@@ -142,6 +194,20 @@ view: tree_species {
   dimension: tree_size {
     type: string
     sql: ${TABLE}.tree_size ;;
+  }
+
+  dimension: tree_size_alt {
+    type: string
+    sql: ${TABLE}.tree_size ;;
+    html:
+      {% if value == 'Large (Mature Height > 50 ft)' %}
+        <div style="background-color:#D5EFEE">{{ value }}</div>
+      {% elsif value == 'Medium (Mature Height 35-50 ft)' or value == 'Intermediate (Mature Height 25-35 ft)' %}
+        <div style="background-color:#FCECCC">{{ value }}</div>
+      {% elsif value == 'Small (Mature Height < 25 ft)' %}
+        <div style="background-color:#EFD5D6">{{ value }}</div>
+      {% endif %}
+    ;;
   }
 
 
