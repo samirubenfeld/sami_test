@@ -158,6 +158,25 @@ view: tree_census_2015 {
     sql: UPPER(${TABLE}.spc_latin) ;;
   }
 
+  filter: species_count_picker {
+    description: "Use with the Species Count measure"
+    type: string
+    suggest_explore: tree_census_2015
+    suggest_dimension: tree_census_2015.species_common
+  }
+
+  measure: species_count {
+    description: "Use with the Species Count Picker filter-only field"
+    type: sum
+    sql:
+    CASE
+      WHEN {% condition species_count_picker %} ${tree_census_2015.species_common} {% endcondition %}
+      THEN 1
+      ELSE 0
+    END
+  ;;
+  }
+
   filter: species_select_latin {
     suggest_dimension: species_latin
   }
