@@ -25,6 +25,9 @@ view: merged_1995_2015 {
     sql: ${TABLE}.ZIPCODE ;;
   }
 
+
+
+
   dimension: spc_common {
     type: string
     sql: ${TABLE}.SPC_COMMON ;;

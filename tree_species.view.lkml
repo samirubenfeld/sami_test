@@ -216,7 +216,7 @@ view: tree_species {
 
   measure: count {
     type: count
-    drill_fields: [species_common_name, species_scientific_name]
+    drill_fields: [tree_size_alt, growth_rate, fall_color_alt, form, location_tolerances, species_common_name, species_scientific_name]
   }
 
   # ----- Sets of fields for drilling ------

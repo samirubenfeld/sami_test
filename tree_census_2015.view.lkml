@@ -27,6 +27,27 @@ view: tree_census_2015 {
     sql: ${TABLE}.boroname ;;
   }
 
+
+
+  dimension: boroname_alt {
+    type: string
+    sql: ${TABLE}.boroname ;;
+    html:
+      {% if value == 'Manhattan' %}
+        <div style="background-color:#D5EFEE; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
+      {% elsif value == 'Brooklyn' %}
+        <div style="background-color:#FCECCC; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
+      {% elsif value == 'Bronx' %}
+        <div style="background-color:#EFD5D6; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
+      {% elsif value == 'Queens' %}
+        <div style="background-color:#6B9080; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
+      {% elsif value == 'Staten Island' %}
+        <div style="background-color:#A4C3B2; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
+      {% endif %}
+    ;;
+  }
+
+
   dimension: brch_light {
     type: yesno
     sql: ${TABLE}.brch_light ;;
@@ -55,6 +76,7 @@ view: tree_census_2015 {
   }
 
   dimension_group: created {
+    description: "Date trees were mapped"
     type: time
     timeframes: [
       raw,
@@ -75,6 +97,7 @@ view: tree_census_2015 {
   }
 
   dimension: guards {
+    description: "Presence and type of tree guard"
     type: string
     sql: ${TABLE}.guards ;;
   }
@@ -127,21 +150,25 @@ view: tree_census_2015 {
   }
 
   dimension: root_grate {
+    description: "Root problems caused by metal grates"
     type: yesno
     sql: ${TABLE}.root_grate ;;
   }
 
   dimension: root_other {
+    description: "Presence of other root problems"
     type: yesno
     sql: ${TABLE}.root_other ;;
   }
 
   dimension: root_stone {
+    description: "Root problems caused by paving stones in the tree bed"
     type: yesno
     sql: ${TABLE}.root_stone ;;
   }
 
   dimension: sidewalk {
+    description: "Sidewalk damage immediately adjacent to tree"
     type: string
     sql: ${TABLE}.sidewalk ;;
   }
@@ -227,11 +254,13 @@ view: tree_census_2015 {
   }
 
   dimension: stump_diam {
+    description: "Diameter of stump"
     type: number
     sql: ${TABLE}.stump_diam ;;
   }
 
   dimension: tree_dbh {
+    description: "Diameter at breast height of tree"
     type: number
     sql: ${TABLE}.tree_dbh ;;
   }
@@ -242,16 +271,19 @@ view: tree_census_2015 {
   }
 
   dimension: trnk_light {
+    description: "Trunk problems caused by lights"
     type: yesno
     sql: ${TABLE}.trnk_light ;;
   }
 
   dimension: trnk_other {
+    description: "Presence of other trunk problems"
     type: yesno
     sql: ${TABLE}.trnk_other ;;
   }
 
   dimension: trunk_wire {
+    description: "Trunk problems caused by rope or wires"
     type: yesno
     sql: ${TABLE}.trunk_wire ;;
   }
@@ -317,7 +349,7 @@ view: tree_census_2015 {
 
   measure: count {
     type: count
-    drill_fields: [tree_census_2015.species_common, tree_census_2015.species_latin, tree_census_2015.boroname, tree_census_2015.nta_name]
+    drill_fields: [boroname_alt, brch_light, brch_other, species_common, species_latin, boroname, nta_name]
   }
 
   measure: avg_tree_dbh {
