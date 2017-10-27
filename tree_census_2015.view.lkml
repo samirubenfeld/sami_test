@@ -359,6 +359,33 @@ view: tree_census_2015 {
   }
 
 
+  measure: rt_gt_count {
+    type: count
+    filters: {
+      field: root_grate
+      value: "Yes"
+    }
+  }
+
+
+  measure: percent_rt_gt {
+    type: number
+    sql: 100.0 * ${rt_gt_count} / NULLIF(${count}, 0) ;;
+    value_format: "#.00\%"
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
 #   measure: poor_count {
 #     type: count
 #     filters: {
