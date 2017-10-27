@@ -370,8 +370,8 @@ view: tree_census_2015 {
 
   measure: percent_rt_gt {
     type: number
-    sql: 100.0 * ${rt_gt_count} / NULLIF(${count}, 0) ;;
-    value_format: "#.00\%"
+    sql: 1.00 * ${rt_gt_count} / NULLIF(${count}, 0) ;;
+    value_format: "#.0000\%"
 
   }
 
@@ -386,29 +386,6 @@ view: tree_census_2015 {
 
 
 
-#   measure: poor_count {
-#     type: count
-#     filters: {
-#       field: health
-#       value: "Poor"
-#     }
-#   }
-#
-#   measure: good_count {
-#     type: count
-#     filters: {
-#       field: health
-#       value: "Good"
-#     }
-#   }
-#
-#   measure: fair_count {
-#     type: count
-#     filters: {
-#       field: health
-#       value: "Fair"
-#     }
-#   }
 
 
   measure: manhattan_count {
