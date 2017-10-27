@@ -33,6 +33,12 @@ map_layer: custom_census {
   property_key: "ntacode"
 }
 
+map_layer: custom_neighborhoods {
+  url: "https://gist.githubusercontent.com/samirubenfeld/3c2c888b779b694107a32ab7050e61b8/raw/6a936ba08539271f9639cb9b8d2533c60006fc43/neighborhoods.json"
+  property_key: "neighborhood"
+}
+
+
 
 
  map_layer: custom_map {
