@@ -71,7 +71,7 @@ view: tree_census_2015 {
 
   dimension: cncldist {
     type: number
-    map_layer_name: custom_map
+    map_layer_name: custom_council
     sql: ${TABLE}.cncldist ;;
   }
 
@@ -183,6 +183,12 @@ view: tree_census_2015 {
     primary_key:  yes
     type: string
     sql: UPPER(${TABLE}.spc_latin) ;;
+  }
+
+  measure: name_count {
+    type: count_distinct
+    sql: ${species_common} ;;
+    drill_fields: [species_common]
   }
 
   filter: species_count_picker {
@@ -349,13 +355,30 @@ view: tree_census_2015 {
 
   measure: count {
     type: count
-    drill_fields: [boroname_alt, brch_light, brch_other, species_common, species_latin, boroname, nta_name]
+    drill_fields: [species_images.species_image, boroname_alt, brch_light, brch_other, species_common, species_latin, boroname, nta_name]
   }
 
   measure: avg_tree_dbh {
     type: average
     sql: ${tree_dbh} ;;
     value_format: "0.00"
+  }
+
+
+  measure: rt_stone_count {
+    type: count
+    filters: {
+      field: root_stone
+      value: "Yes"
+    }
+  }
+
+
+  measure: percent_rt_stone {
+    type: number
+    sql: 1.00 * ${rt_stone_count} / NULLIF(${count}, 0) ;;
+    value_format: "#.0000\%"
+
   }
 
 
@@ -376,6 +399,32 @@ view: tree_census_2015 {
   }
 
 
+  measure: count_percent {
+    type: percent_of_total
+    direction: "column"
+    value_format: "0.00\%"
+    sql:
+    ${count} ;;
+    description: "Has HTML"
+    html:
+      <div style="float: left
+        ; width:{{value | times: 7}}%
+        ; max-width: 75%
+        ; font-weight: bold
+        ; font-color: white
+        ; background-color: rgba(242,56,90,{{value | times: 5 | divided_by: 100}})
+        ; text-align:left"> <p style="margin-bottom: 0; margin-left: 4px;">{{ rendered_value }}</p>
+      </div>
+      <div style="float: right; margin-bottom: 0; position: relative; left:-25%;">
+        {% if value > 0.0 %}
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/50/Green_Arrow_Up.svg" height=10px />
+        {% elsif value < 0.0 %}
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Red_Arrow_Down.svg" height=10px max-width=100% max-height=100% style="position: relative; left: -25%;" />
+        {% endif %}
+      </div>
+      <div style="float: right; margin-bottom: 0; position: relative; left:-15%;">{{ rendered_value | abs }}</div>
+     ;;
+  }
 
 
 
