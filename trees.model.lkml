@@ -156,6 +156,11 @@ explore: fast_facts {
   }
 
 
+explore: tree_images {
+
+}
+
+
 # explore: tree_census_2005 {
 #
 # }
