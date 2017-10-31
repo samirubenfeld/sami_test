@@ -39,8 +39,6 @@ map_layer: custom_neighborhoods {
 }
 
 
-
-
  map_layer: custom_council{
    url: "https://gist.githubusercontent.com/samirubenfeld/1b971a1af78bf6d9e844a4d35d7225c8/raw/c639b8d616a374c2d48d3a36349fb65d4807e9b5/query%2520(1).json"
    property_key: "CounDist"
@@ -62,9 +60,6 @@ explore: fall_form {
   hidden: yes
 
 }
-
-
-
 
 
 explore: rank_queens {
