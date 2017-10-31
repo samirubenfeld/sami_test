@@ -115,10 +115,13 @@ explore: tree_census_2015 {
   }
   join: tree_images {
     relationship: many_to_one
-    sql_on: ${tree_species.species_scientific_name} = ${tree_images.species_latin} ;;
+    sql_on: ${tree_census_2015.species_latin} = ${tree_images.species_latin} ;;
   }
 
 }
+
+
+
 
 
 explore: tree_census_1995 {

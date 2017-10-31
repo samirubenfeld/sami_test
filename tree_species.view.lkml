@@ -40,27 +40,27 @@ view: tree_species {
     sql: ${fall_color_fix};;
     html:
       {% if value == 'Cream' %}
-        <div style="color: black; background-color:#DEC6AC; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
+        <div style="border-radius: 25px; color: black; background-color:#DEC6AC; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
       {% elsif value == 'Maroon' %}
-        <div style="color: white; background-color:#800000; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
+        <div style="border-radius: 25px; color: white; background-color:#800000; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
       {% elsif value == 'Orange/Brown' %}
-        <div style="color: black; background-color:#ee7600; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
+        <div style="border-radius: 25px; color: black; background-color:#ee7600; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
       {% elsif value == 'Purple/Maroon' %}
-        <div style="color: white; background-color:#800020; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
+        <div style="border-radius: 25px; color: white; background-color:#800020; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
       {% elsif value == 'Red' %}
-        <div style="color: black; background-color:#fa0000; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
+        <div style="border-radius: 25px; color: black; background-color:#fa0000; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
       {% elsif value == 'Red/Bronze' %}
-        <div style="color: black; background-color:#cd5832; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
+        <div style="border-radius: 25px; color: black; background-color:#cd5832; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
       {% elsif value == 'Yellow' %}
-        <div style="color: black; background-color:#FFC300; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
+        <div style="border-radius: 25px; color: black; background-color:#FFC300; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
       {% elsif value == 'Yellow/Orange' %}
-        <div style="color: black; background-color:#ffae42; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
+        <div style="border-radius: 25px; color: black; background-color:#ffae42; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
       {% elsif value == 'Red/Yellow' %}
-        <div style="color: black; background-color:#F9A825; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
+        <div style="border-radius: 25px; color: black; background-color:#F9A825; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
       {% elsif value == 'Yellow/Bronze' %}
-        <div style="color: black; background-color:#d99058; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
+        <div style="border-radius: 25px; color: black; background-color:#d99058; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
       {% elsif value == 'Red/Orange' %}
-        <div style="color: black; background-color:#FF4500; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
+        <div style="border-radius: 25px; color: black; background-color:#FF4500; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
       {% endif %}
     ;;
   }

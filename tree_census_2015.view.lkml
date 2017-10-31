@@ -355,7 +355,7 @@ view: tree_census_2015 {
 
   measure: count {
     type: count
-    drill_fields: [species_images.species_image, boroname_alt, brch_light, brch_other, species_common, species_latin, boroname, nta_name]
+    drill_fields: [tree_images.image, boroname_alt, brch_light, brch_other, species_common, species_latin, boroname, nta_name]
   }
 
   measure: avg_tree_dbh {
@@ -410,6 +410,7 @@ view: tree_census_2015 {
       <div style="float: left
         ; width:{{value | times: 7}}%
         ; max-width: 75%
+        ; border-radius: 25px
         ; font-weight: bold
         ; font-color: white
         ; background-color: rgba(242,56,90,{{value | times: 5 | divided_by: 100}})
