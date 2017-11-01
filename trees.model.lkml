@@ -28,6 +28,12 @@ map_layer: tract {
 }
 
 
+map_layer: custom_st_assembly {
+  url: "https://gist.githubusercontent.com/samirubenfeld/db3f5d6af09c7d521d0d31176f5c672a/raw/6d162765434f92f5e292ba22d83722fd06cddd57/stassem.json"
+  property_key: "AssemDist"
+}
+
+
 map_layer: custom_census {
   url: "https://gist.githubusercontent.com/samirubenfeld/b6e0cc4feb256cac17b7de5d8d9ba0ce/raw/5bf4a50353882bece32260e7ab67f0b2d2e68e1f/2010CensusTracts.json"
   property_key: "ntacode"

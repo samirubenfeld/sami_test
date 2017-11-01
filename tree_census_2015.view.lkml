@@ -236,6 +236,7 @@ view: tree_census_2015 {
 
   dimension: st_assem {
     type: number
+    map_layer_name: custom_st_assembly
     sql: ${TABLE}.st_assem ;;
   }
 
@@ -247,6 +248,10 @@ view: tree_census_2015 {
   dimension: state {
     type: string
     sql: ${TABLE}.state ;;
+    link: {
+      url: "https://maps.google.com?q={{value}}"
+      label: "Google Maps"
+    }
   }
 
   dimension: status {
