@@ -33,8 +33,23 @@ map_layer: custom_st_assembly {
   property_key: "AssemDist"
 }
 
+map_layer: custom_manhattan_map {
+  url: "https://gist.githubusercontent.com/samirubenfeld/99de6d1f34d89175d1b2c4c00e801ea8/raw/87ead24cc274efe86ee02174b53fe2bed86caf8f/manhattan_tracts.json"
+  property_key: "ntacode"
+}
 
-map_layer: custom_census {
+map_layer: custom_brooklyn_map {
+  url: "https://gist.githubusercontent.com/samirubenfeld/e16a290baa71f74ce6d0d372968eadac/raw/56ff3c11a0ea7cc6a45c51d04b61b8436bd94000/brooklyn_tracts.json"
+  property_key: "ntacode"
+}
+
+map_layer: custom_queens_map {
+  url: "https://gist.githubusercontent.com/samirubenfeld/b14309f1aed70f6b98cf4f58d6e349b7/raw/7a5e43c5454542a2461d034d44ef8df41718c405/queens_tracts.json"
+  property_key: "ntacode"
+}
+
+
+map_layer: custom_nta {
   url: "https://gist.githubusercontent.com/samirubenfeld/b6e0cc4feb256cac17b7de5d8d9ba0ce/raw/5bf4a50353882bece32260e7ab67f0b2d2e68e1f/2010CensusTracts.json"
   property_key: "ntacode"
 }

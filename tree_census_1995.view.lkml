@@ -58,7 +58,7 @@ view: tree_census_1995 {
 
   dimension: nta_2010 {
     type: string
-    map_layer_name: custom_census
+    map_layer_name: custom_nta
     sql: ${TABLE}.nta_2010 ;;
   }
 
