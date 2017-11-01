@@ -270,6 +270,12 @@ view: tree_census_2015 {
     sql: ${TABLE}.stump_diam ;;
   }
 
+  measure: stump_diam_measure {
+    description: "Diameter of stump"
+    type: number
+    sql: ${TABLE}.stump_diam ;;
+  }
+
   dimension: tree_dbh {
     description: "Diameter at breast height of tree"
     type: number
