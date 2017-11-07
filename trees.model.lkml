@@ -49,6 +49,17 @@ map_layer: custom_queens_map {
 }
 
 
+map_layer: custom_si_map {
+  url: "https://gist.githubusercontent.com/samirubenfeld/702613d454eb8f78d880a2bccc801ac1/raw/0dabcf2b8adb9cf777dd1e4acbb1fea23e124448/statenisle_tracts.json"
+  property_key: "ntacode"
+}
+
+map_layer: custom_bronx_map {
+  url: "https://gist.githubusercontent.com/samirubenfeld/0291ef9134e78d94dac3398dccace4c5/raw/8a24a39041276e5fae792d1742321e07ad18f3aa/bronx_tracts.json"
+  property_key: "ntacode"
+}
+
+
 map_layer: custom_nta {
   url: "https://gist.githubusercontent.com/samirubenfeld/b6e0cc4feb256cac17b7de5d8d9ba0ce/raw/5bf4a50353882bece32260e7ab67f0b2d2e68e1f/2010CensusTracts.json"
   property_key: "ntacode"
