@@ -19,7 +19,7 @@ view: tree_species {
 
 
 
-  dimension: fall_color_fix {
+  dimension: fall_colors {
     sql: CASE WHEN ${fall_color} = 'Cream' THEN 'Cream'
               WHEN ${fall_color} = 'Maroon' THEN 'Maroon'
               WHEN ${fall_color} = 'Orange/Brown' THEN 'Orange/Brown'
@@ -37,7 +37,7 @@ view: tree_species {
 
   dimension: fall_color_alt {
     type: string
-    sql: ${fall_color_fix};;
+    sql: ${fall_colors};;
     html:
       {% if value == 'Cream' %}
         <div style="border-radius: 25px; color: black; background-color:#DEC6AC; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>

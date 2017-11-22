@@ -197,6 +197,11 @@ view: tree_census_2015 {
     group_label: "Species Info"
     sql: UPPER(${TABLE}.spc_common) ;;
     html: {{ value | upcase}} ;;
+    link: {
+      label: "Tree Drilldown"
+      url: "/dashboards/25?Tree%20Species%20Common={{ value }}"
+      icon_url: "http://looker.com/favicon.ico"
+    }
   }
 
   dimension: species_latin {
