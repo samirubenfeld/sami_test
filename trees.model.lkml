@@ -127,6 +127,8 @@ explore: rank {
 
 }
 
+explore: change_2005_2015 {}
+
 
 explore: top_nyc_locations {}
 
@@ -226,6 +228,10 @@ explore: change_since_2005 {
 }
 
 explore: tree_census_2015_bigquery {
+
+}
+
+explore: tree_census_2005_bigquery {
 
 }
 
