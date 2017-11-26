@@ -69,6 +69,35 @@ view: change_2005_2015 {
     sql: ${TABLE}.dead_growth ;;
   }
 
+  #MEASURES
+
+  measure: sum_count_2005 {
+    type: sum
+    sql: ${count_2005} ;;
+  }
+
+  measure: sum_count_2015 {
+    type: sum
+    sql: ${count_2015} ;;
+  }
+
+  measure: sum_count_growth {
+    type: sum
+    sql: ${count_growth} ;;
+  }
+
+  measure: sum_dead_growth {
+    type: sum
+    sql: ${dead_growth} ;;
+  }
+
+  measure: sum_alive_growth {
+    type: sum
+    sql: ${alive_growth} ;;
+  }
+
+
+
   set: detail {
     fields: [
       borocode,

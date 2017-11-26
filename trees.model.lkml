@@ -155,6 +155,19 @@ explore: tree_census_2015 {
 }
 
 
+explore: tree_census_2015_bigquery {
+  join: tree_species {
+    relationship: many_to_one
+    sql_on:  ${tree_species.species_scientific_name} = ${tree_census_2015_bigquery.species_latin} ;;
+  }
+  join: tree_images {
+    relationship: many_to_one
+    sql_on: ${tree_census_2015_bigquery.species_latin} = ${tree_images.species_latin} ;;
+  }
+
+}
+
+
 
 
 
@@ -222,16 +235,26 @@ explore: fall_colors {
 
 }
 
+
+explore: top_10_locations {
+#   hidden: yes
+}
+
 explore: change_since_2005 {
   hidden: yes
 
 }
 
-explore: tree_census_2015_bigquery {
+# explore: tree_census_2015_bigquery {
+#
+# }
+
+explore: tree_census_2005_bigquery {
 
 }
 
-explore: tree_census_2005_bigquery {
+
+explore: tree_census_1995_bigquery {
 
 }
 
@@ -245,6 +268,11 @@ explore: health_pct_2015 {
   hidden: yes
 
 }
+
+explore: growth_1995_2005 {
+
+}
+
 
 explore: merged_1995_2015 {
   hidden: yes

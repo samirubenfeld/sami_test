@@ -143,6 +143,7 @@ view: tree_census_2005 {
   }
 
   dimension: species_latin {
+    primary_key:  yes
     type: string
     sql: ${TABLE}.spc_latin ;;
   }
@@ -238,6 +239,18 @@ view: tree_census_2005 {
   dimension: zipcode {
     type: zipcode
     sql: ${TABLE}.zipcode ;;
+  }
+
+  #MEASURES
+
+
+  measure: inf_canopy_count {
+    group_label: "Urban Conflict Counts"
+    type: count
+    filters: {
+      field: inf_canopy
+      value: "Yes"
+    }
   }
 
   measure: count {

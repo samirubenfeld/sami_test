@@ -7,6 +7,7 @@ view: tree_census_2005_bigquery {
   }
 
   dimension: borocode {
+    description: "Borough tree is in, using a one-digit borough code: 1 – Manhattan, 2 – Bronx, 3 – Brooklyn, 4 – Queens, 5 – Staten Island"
     type: number
     sql: ${TABLE}.borocode ;;
   }
@@ -96,8 +97,10 @@ view: tree_census_2005_bigquery {
     sql: ${TABLE}.location_1 ;;
   }
 
+
   dimension: nta {
     type: string
+    map_layer_name: custom_nta
     sql: ${TABLE}.nta ;;
   }
 
@@ -137,15 +140,44 @@ view: tree_census_2005_bigquery {
     sql: ${TABLE}.soil_lvl ;;
   }
 
+
   dimension: spc_common {
     type: string
-    sql: ${TABLE}.spc_common ;;
+    sql: UPPER(${TABLE}.spc_common) ;;
+    html: {{ value | upcase}} ;;
   }
 
   dimension: spc_latin {
+    primary_key:  yes
     type: string
-    sql: ${TABLE}.spc_latin ;;
+    sql: UPPER(${TABLE}.spc_latin) ;;
   }
+
+
+  filter: species_select_latin {
+    suggest_dimension: spc_latin
+  }
+
+  dimension: species_comparitor_latin {
+    sql:
+      CASE WHEN {% condition species_select_latin %} ${spc_latin} {% endcondition %}
+      THEN ${spc_latin}
+      ELSE 'Rest Of Population'
+      END;;
+  }
+
+  filter: species_select_common {
+    suggest_dimension: spc_common
+  }
+
+  dimension: species_comparitor_common {
+    sql:
+      CASE WHEN {% condition species_select_common %} ${spc_common} {% endcondition %}
+      THEN ${spc_common}
+      ELSE 'Rest Of Population'
+      END;;
+  }
+
 
   dimension: st_assem {
     type: number
@@ -236,9 +268,383 @@ view: tree_census_2005_bigquery {
     type: zipcode
     sql: ${TABLE}.zipcode ;;
   }
+  #MEASURES
+
+  measure: excellent_status_count {
+    group_label: "Status Count"
+    label: "Excellent Tree Health"
+    type: count
+    filters: {
+      field: status
+      value: "Excellent"
+    }
+  }
+
+  measure: percent_excellent {
+    type: number
+    sql: 100.0 * ${excellent_status_count} / NULLIF(${count}, 0) ;;
+    value_format: "#.00\%"
+  }
+
+
+  measure: good_status_count {
+    group_label: "Status Count"
+    label: "Good Tree Health"
+    type: count
+    filters: {
+      field: status
+      value: "Good"
+    }
+  }
+
+  measure: percent_good {
+    type: number
+    sql: 100.0 * ${good_status_count} / NULLIF(${count}, 0) ;;
+    value_format: "#.00\%"
+  }
+
+
+  measure: poor_status_count {
+    group_label: "Status Count"
+    label: "Poor Tree Health"
+    type: count
+    filters: {
+      field: status
+      value: "Poor"
+    }
+  }
+
+  measure: percent_poor {
+    type: number
+    sql: 100.0 * ${poor_status_count} / NULLIF(${count}, 0) ;;
+    value_format: "#.00\%"
+  }
+
+
+  measure: dead_status_count {
+    group_label: "Status Count"
+    label: "Dead"
+    type: count
+    filters: {
+      field: status
+      value: "Dead"
+    }
+  }
+
+  measure: percent_dead {
+    type: number
+    sql: 100.0 * ${dead_status_count} / NULLIF(${count}, 0) ;;
+    value_format: "#.00\%"
+  }
+
+
+
+
+
+  measure: vert_other_count {
+    group_label: "Vertical Treatment Types"
+    label: "Other Vertical Treatment Present"
+    type: count
+    filters: {
+      field: vert_other
+      value: "Yes"
+    }
+  }
+
+
+  measure: vert_pgrd_count {
+    group_label: "Vertical Treatment Types"
+    label: "Perimeter guard present"
+    type: count
+    filters: {
+      field: vert_pgrd
+      value: "Yes"
+    }
+  }
+
+  measure: vert_tgrd_count {
+    group_label: "Vertical Treatment Types"
+    label: "Tall guard present"
+    type: count
+    filters: {
+      field: vert_tgrd
+      value: "Yes"
+    }
+  }
+
+  measure: vert_wall_count {
+    group_label: "Vertical Treatment Types"
+    label: "Walled tree well present"
+    type: count
+    filters: {
+      field: vert_wall
+      value: "Yes"
+    }
+  }
+
+
+
+  measure: inf_canopy_count {
+    group_label: "Urban Conflict Counts"
+    label: "Canopy debris present"
+    type: count
+    filters: {
+      field: inf_canopy
+      value: "Yes"
+    }
+  }
+
+  measure: percent_canopy_debris {
+    type: number
+    sql: 100.0 * ${inf_canopy_count} / NULLIF(${count}, 0) ;;
+    value_format: "#.00\%"
+  }
+
+
+  measure: inf_guard_count {
+    group_label: "Urban Conflict Counts"
+    label: "Choking guard or grate present"
+    type: count
+    filters: {
+      field: inf_guard
+      value: "Yes"
+    }
+  }
+
+  measure: percent_guard {
+    type: number
+    sql: 100.0 * ${inf_guard_count} / NULLIF(${count}, 0) ;;
+    value_format: "#.00\%"
+  }
+
+
+  measure: inf_lights_count {
+    label: "Tree lights present"
+    group_label: "Urban Conflict Counts"
+    type: count
+    filters: {
+      field: inf_lights
+      value: "Yes"
+    }
+  }
+
+  measure: percent_lights {
+    type: number
+    sql: 100.0 * ${inf_lights_count} / NULLIF(${count}, 0) ;;
+    value_format: "#.00\%"
+  }
+
+
+
+  measure: inf_other_count {
+    label: "Other infrastructure conflicts present"
+    group_label: "Urban Conflict Counts"
+    type: count
+    filters: {
+      field: inf_other
+      value: "Yes"
+    }
+  }
+
+  measure: percent_other {
+    type: number
+    sql: 100.0 * ${inf_other_count} / NULLIF(${count}, 0) ;;
+    value_format: "#.00\%"
+  }
+
+
+  measure: inf_outlet_count {
+    label: "Electrical outlet present"
+    group_label: "Urban Conflict Counts"
+    type: count
+    filters: {
+      field: inf_outlet
+      value: "Yes"
+    }
+  }
+
+  measure: percent_outlet {
+    type: number
+    sql: 100.0 * ${inf_outlet_count} / NULLIF(${count}, 0) ;;
+    value_format: "#.00\%"
+  }
+
+
+  measure: inf_paving_count {
+    label: "Close paving present"
+    group_label: "Urban Conflict Counts"
+    type: count
+    filters: {
+      field: inf_paving
+      value: "Yes"
+    }
+  }
+
+
+  measure: percent_paving {
+    type: number
+    sql: 100.0 * ${inf_paving_count} / NULLIF(${count}, 0) ;;
+    value_format: "#.00\%"
+  }
+
+
+
+  measure: inf_shoes_count {
+    label: "Sneakers present"
+    group_label: "Urban Conflict Counts"
+    type: count
+    filters: {
+      field: inf_shoes
+      value: "Yes"
+    }
+  }
+
+  measure: percent_shoes {
+    type: number
+    sql: 100.0 * ${inf_shoes_count} / NULLIF(${count}, 0) ;;
+    value_format: "#.00\%"
+  }
+
+
+  measure: inf_wires_count {
+    label: "Choking wires present"
+    group_label: "Urban Conflict Counts"
+    type: count
+    filters: {
+      field: inf_wires
+      value: "Yes"
+    }
+  }
+
+  measure: percent_wires_inf {
+    type: number
+    sql: 100.0 * ${inf_wires_count} / NULLIF(${count}, 0) ;;
+    value_format: "#.00\%"
+  }
+
+
+  measure: wire_2nd_count {
+    group_label: "Urban Conflict Counts"
+    type: count
+    filters: {
+      field: wire_2nd
+      value: "Yes"
+    }
+  }
+
+  measure: percent_wires_2nd {
+    type: number
+    sql: 100.0 * ${wire_2nd_count} / NULLIF(${count}, 0) ;;
+    value_format: "#.00\%"
+  }
+
+  measure: wire_htap_count {
+    group_label: "Urban Conflict Counts"
+    type: count
+    filters: {
+      field: wire_htap
+      value: "Yes"
+    }
+  }
+
+  measure: percent_wires_htp {
+    type: number
+    sql: 100.0 * ${wire_htap_count} / NULLIF(${count}, 0) ;;
+    value_format: "#.00\%"
+  }
+
+  measure: wire_other_count {
+    group_label: "Urban Conflict Counts"
+    type: count
+    filters: {
+      field: wire_other
+      value: "Yes"
+    }
+  }
+
+  measure: percent_wires_other {
+    type: number
+    sql: 100.0 * ${wire_other_count} / NULLIF(${count}, 0) ;;
+    value_format: "#.00\%"
+  }
+
+  measure: wire_prime_count {
+    group_label: "Urban Conflict Counts"
+    type: count
+    filters: {
+      field: wire_prime
+      value: "Yes"
+    }
+  }
+
+  measure: percent_wires_prime {
+    type: number
+    sql: 100.0 * ${wire_prime_count} / NULLIF(${count}, 0) ;;
+    value_format: "#.00\%"
+  }
+
+
+  measure: sidw_crack_count {
+    label: "Cracked sidewalk present"
+    group_label: "Urban Conflict Counts"
+    type: count
+    filters: {
+      field: sidw_crack
+      value: "Yes"
+    }
+  }
+
+
+  measure: percent_sidw_crack {
+    type: number
+    sql: 100.0 * ${sidw_crack_count} / NULLIF(${count}, 0) ;;
+    value_format: "#.00\%"
+  }
+
+
+  measure: sidw_raise_count {
+    label: "Raised sidewalk present"
+    group_label: "Urban Conflict Counts"
+    type: count
+    filters: {
+      field: sidw_raise
+      value: "Yes"
+    }
+  }
+
+  measure: percent_sidw_raise {
+    type: number
+    sql: 100.0 * ${sidw_raise_count} / NULLIF(${count}, 0) ;;
+    value_format: "#.00\%"
+  }
+
+
+  measure: count_percent {
+    type: percent_of_total
+    direction: "column"
+    value_format: "0.00\%"
+    sql:
+    ${count} ;;
+    description: "Has HTML"
+    html:
+      <div style="float: left
+        ; width:{{value | times: 7}}%
+        ; max-width: 75%
+        ; border-radius: 25px
+        ; font-weight: bold
+        ; font-color: white
+        ; background-color: rgba(242,56,90,{{value | times: 5 | divided_by: 100}})
+        ; text-align:left"> <p style="margin-bottom: 0; margin-left: 4px;">{{ rendered_value }}</p>
+      </div>
+     ;;
+  }
+
+
 
   measure: count {
     type: count
-    drill_fields: [boroname, nta_name]
+    drill_fields: [spc_common, spc_latin, count_percent, count]
   }
+
+
 }
