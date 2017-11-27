@@ -94,6 +94,9 @@ explore: fall_form {
 }
 
 
+explore: pop_changes_by_zip {}
+
+
 explore: rank_queens {
   hidden: yes
 
