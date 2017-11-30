@@ -643,7 +643,7 @@ view: tree_census_2005_bigquery {
 
   measure: count {
     type: count
-    drill_fields: [spc_common, spc_latin, count_percent, count]
+    drill_fields: [tree_images.image, spc_common, spc_latin, count_percent, count]
   }
 
 

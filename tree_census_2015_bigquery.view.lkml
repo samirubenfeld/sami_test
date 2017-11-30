@@ -57,7 +57,9 @@ view: tree_census_2015_bigquery {
 
 
   dimension: brch_light {
+    label: "Branch Problem Caused by Lights"
     group_label: "Branch Info"
+    description: "Indicates the presence of a branch problem caused by lights (usually string lights) or wires in the branches"
     type: yesno
     sql: ${TABLE}.brch_light ;;
   }
@@ -69,7 +71,9 @@ view: tree_census_2015_bigquery {
   }
 
   dimension: brch_shoe {
+    label: "Branch Problem Caused by Sneakers"
     group_label: "Branch Info"
+    description: "Indicates the presence of a branch problem caused by sneakers in the branches"
     type: yesno
     sql: ${TABLE}.brch_shoe ;;
   }
@@ -108,7 +112,7 @@ view: tree_census_2015_bigquery {
   }
 
   dimension: guards {
-    description: "Presence and type of tree guard"
+    description: "Indicates whether a guard is present, and if the user felt it was a helpful or harmful guard. Not recorded for dead trees and stumps"
     type: string
     sql: ${TABLE}.guards ;;
   }
@@ -167,7 +171,7 @@ view: tree_census_2015_bigquery {
   }
 
   dimension: root_grate {
-    description: "Root problems caused by metal grates"
+    description: "Indicates the presence of a root problem caused by metal grates in tree bed"
     group_label: "Root Info"
     type: yesno
     sql: ${TABLE}.root_grate ;;
@@ -181,7 +185,7 @@ view: tree_census_2015_bigquery {
   }
 
   dimension: root_stone {
-    description: "Root problems caused by paving stones in the tree bed"
+    description: "Indicates the presence of a root problem caused by paving stones in tree bed"
     group_label: "Root Info"
     type: yesno
     sql: ${TABLE}.root_stone ;;
@@ -265,6 +269,21 @@ view: tree_census_2015_bigquery {
       END;;
   }
 
+
+  filter: borough_select {
+    suggest_dimension: boroname
+  }
+
+  dimension: borough_comparitor {
+    sql:
+      CASE WHEN {% condition borough_select %} ${boroname} {% endcondition %}
+      THEN ${boroname}
+      ELSE 'Rest Of Population'
+      END;;
+  }
+
+
+
   dimension: st_assem {
     type: number
     group_label: "Location Info"
@@ -296,6 +315,7 @@ view: tree_census_2015_bigquery {
   }
 
   dimension: steward {
+    description: "Indicates the number of unique signs of stewardship observed for this tree. Not recorded for stumps or dead trees."
     type: string
     sql: ${TABLE}.steward ;;
   }

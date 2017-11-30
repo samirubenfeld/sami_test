@@ -42,42 +42,48 @@ view: pop_changes_by_zip {
   }
 
   dimension: zipcode {
-    type: string
+    type: zipcode
     sql: ${TABLE}.zipcode ;;
   }
 
   dimension: count_2015 {
-    type: string
+    type: number
     sql: ${TABLE}.count_2015 ;;
   }
 
   dimension: count_1995 {
-    type: string
+    type: number
     sql: ${TABLE}.count_1995 ;;
   }
 
   dimension: alive_growth {
-    type: string
+    type: number
     sql: ${TABLE}.alive_growth ;;
   }
 
   dimension: dead_growth {
-    type: string
+    type: number
     sql: ${TABLE}.dead_growth ;;
   }
 
   dimension: pop_chg {
-    type: string
+    type: number
     sql: ${TABLE}.pop_chg ;;
   }
 
   dimension: pop_pct_chg {
-    type: string
+    type: number
     sql: ${TABLE}.pop_pct_chg ;;
   }
 
+  measure: sum_pop_pct_chg {
+    type: sum
+    sql: ${TABLE}.pop_pct_chg ;;
+    value_format: "0.00\%"
+  }
+
   dimension: abs_pct_chg {
-    type: string
+    type: number
     sql: ${TABLE}.abs_pct_chg ;;
   }
 

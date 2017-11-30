@@ -253,6 +253,15 @@ explore: change_since_2005 {
 # }
 
 explore: tree_census_2005_bigquery {
+  join: tree_species {
+    relationship: many_to_one
+    sql_on:  ${tree_species.species_scientific_name} = ${tree_census_2005_bigquery.spc_latin} ;;
+  }
+  join: tree_images {
+    relationship: many_to_one
+    sql_on: ${tree_census_2005_bigquery.spc_latin} = ${tree_images.species_latin} ;;
+  }
+
 
 }
 
