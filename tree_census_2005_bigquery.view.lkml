@@ -431,7 +431,8 @@ view: tree_census_2005_bigquery {
   measure: percent_lights {
     type: number
     sql: 100.0 * ${inf_lights_count} / NULLIF(${count}, 0) ;;
-    value_format: "#.00\%"
+#     value_format: "#.00\%"
+    value_format: "0.00\%"
   }
 
 
@@ -616,6 +617,23 @@ view: tree_census_2005_bigquery {
     type: number
     sql: 100.0 * ${sidw_raise_count} / NULLIF(${count}, 0) ;;
     value_format: "#.00\%"
+  }
+
+  measure: percent_lights_count {type: number sql: (${percent_lights});;
+    html: <div style="float: left
+          ; width:{{ value | times:100}}%
+          ; background-color: rgba(0,180,0,{{ value | times:100 }})
+          ; text-align:left
+          ; color: #FFFFFF
+          ; border-radius: 5px"> <p style="margin-bottom: 0; margin-left: 4px;">{{ value | times:100 }}%</p>
+          </div>
+          <div style="float: left
+          ; width:{{ 1| minus:value | times:100}}%
+          ; background-color: rgba(0,180,0,0.1)
+          ; text-align:right
+          ; border-radius: 5px"> <p style="margin-bottom: 0; margin-left: 0px; color:rgba(0,0,0,0.0" )>{{value}}</p>
+          </div>
+      ;;
   }
 
 

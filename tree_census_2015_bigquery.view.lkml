@@ -429,7 +429,7 @@ view: tree_census_2015_bigquery {
 
   measure: count {
     type: count
-    drill_fields: [tree_images.image, boroname_alt, species_common, species_latin, nta_name, zipcode_alt]
+    drill_fields: [tree_images.image, boroname_alt, species_common, species_latin, nta_name, zipcode_alt, status]
   }
 
   measure: avg_tree_dbh {
