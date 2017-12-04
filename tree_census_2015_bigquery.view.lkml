@@ -174,22 +174,24 @@ view: tree_census_2015_bigquery {
     description: "Indicates the presence of a root problem caused by metal grates in tree bed"
     group_label: "Root Info"
     type: yesno
-    sql: ${TABLE}.root_grate ;;
+    sql: ${TABLE}.root_grate = 'Yes' ;;
   }
 
   dimension: root_other {
     description: "Presence of other root problems"
     group_label: "Root Info"
     type: yesno
-    sql: ${TABLE}.root_other ;;
+    sql: ${TABLE}.root_other = 'Yes' ;;
   }
 
   dimension: root_stone {
     description: "Indicates the presence of a root problem caused by paving stones in tree bed"
     group_label: "Root Info"
     type: yesno
-    sql: ${TABLE}.root_stone ;;
+    sql: ${TABLE}.root_stone = 'Yes' ;;
   }
+
+
 
   dimension: sidewalk {
     description: "Sidewalk damage immediately adjacent to tree"

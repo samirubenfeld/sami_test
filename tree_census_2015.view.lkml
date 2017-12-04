@@ -150,6 +150,7 @@ view: tree_census_2015 {
     group_label: "Location Info"
     map_layer_name: custom_nta
     sql: ${TABLE}.nta ;;
+    drill_fields: [nta_name, zipcode, st_assem]
   }
 
 
