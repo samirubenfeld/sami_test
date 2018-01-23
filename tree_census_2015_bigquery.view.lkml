@@ -55,6 +55,25 @@ view: tree_census_2015_bigquery {
     ;;
   }
 
+  dimension: boroname_alt_2 {
+    group_label: "Location Info Alt"
+    type: string
+    sql: ${TABLE}.boroname ;;
+    html:
+      {% if value == 'Manhattan' %}
+        <div style="background-color:#D5EFEE; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
+      {% elsif value == 'Brooklyn' %}
+        <div style="background-color:#FCECCC; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
+      {% elsif value == 'Bronx' %}
+        <div style="background-color:#EFD5D6; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
+      {% elsif value == 'Queens' %}
+        <div style="background-color:#6B9080; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
+      {% elsif value == 'Staten Island' %}
+        <div style="background-color:#A4C3B2; font-weight: bold; font-size:100%; text-align:center">{{ value }}</div>
+      {% endif %}
+    ;;
+  }
+
 
   dimension: brch_light {
     label: "Branch Problem Caused by Lights"
