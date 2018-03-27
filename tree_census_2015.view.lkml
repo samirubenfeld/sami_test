@@ -203,6 +203,11 @@ view: tree_census_2015 {
       url: "/dashboards/25?Tree%20Species%20Common={{ value }}"
       icon_url: "http://looker.com/favicon.ico"
     }
+    link: {
+      label: "Tree Species Lookup"
+      url: "/dashboards/21?Tree%20Species%20Common={{ value }}"
+      icon_url: "http://looker.com/favicon.ico"
+    }
   }
 
   dimension: species_latin {

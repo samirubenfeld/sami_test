@@ -479,6 +479,7 @@ view: tree_census_2005_bigquery {
       field: inf_paving
       value: "Yes"
     }
+#     drill_fields: [detail*]
   }
 
 
@@ -498,6 +499,7 @@ view: tree_census_2005_bigquery {
       field: inf_shoes
       value: "Yes"
     }
+#     drill_fields: [detail*]
   }
 
   measure: percent_shoes {
@@ -662,6 +664,10 @@ view: tree_census_2005_bigquery {
   measure: count {
     type: count
     drill_fields: [tree_images.image, spc_common, spc_latin, count_percent, count]
+  }
+
+  set: detail {
+    fields: [borocode, boroname, count, count_percent]
   }
 
 
