@@ -1,7 +1,7 @@
 connection: "google_bigquery_test_db"
 
 include: "*.view.lkml"         # include all views in this project
-include: "*.dashboard.lookml"  # include all dashboards in this project
+# include: "*.dashboard.lookml"  # include all dashboards in this project
 # include: "bq.*.view.lkml"
 # include: "/test_datablocks/bq.explore.lkml"
 
